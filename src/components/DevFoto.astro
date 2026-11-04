@@ -15,7 +15,7 @@ const { image, alt, filename, liveLabel, latency, stateLabel, state, architectur
   Astro.props;
 ---
 
-<div class="dev-photo-card">
+<div class="dev-photo-card motion-safe:animate-fade-in animate-duration-700">
   <div class="window-bar">
     <div class="window-dots" aria-hidden="true">
       <i></i>
@@ -40,3 +40,25 @@ const { image, alt, filename, liveLabel, latency, stateLabel, state, architectur
     <span>{memory}</span>
   </div>
 </div>
+
+<script>
+  const card = document.querySelector<HTMLElement>('.dev-photo-card');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const desktopPointer = window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)').matches;
+
+  if (card && desktopPointer && !reducedMotion) {
+    card.addEventListener('pointermove', (event) => {
+      const bounds = card.getBoundingClientRect();
+      const x = event.clientX - bounds.left;
+      const y = event.clientY - bounds.top;
+      const rotateX = ((y - bounds.height / 2) / (bounds.height / 2)) * -7;
+      const rotateY = ((x - bounds.width / 2) / (bounds.width / 2)) * 7;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    });
+  }
+</script>

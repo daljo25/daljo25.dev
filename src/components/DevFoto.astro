@@ -1,10 +1,42 @@
 ---
 import { Icon } from 'astro-icon/components';
-interface Props { image: string; alt: string; filename: string; liveLabel: string; latency: string; stateLabel: string; state: string; architecture: string; memory: string }
-const { image, alt, filename, liveLabel, latency, stateLabel, state, architecture, memory } = Astro.props;
+interface Props {
+  image: string;
+  alt: string;
+  filename: string;
+  liveLabel: string;
+  latency: string;
+  stateLabel: string;
+  state: string;
+  architecture: string;
+  memory: string;
+}
+const { image, alt, filename, liveLabel, latency, stateLabel, state, architecture, memory } =
+  Astro.props;
 ---
+
 <div class="dev-photo-card">
-	<div class="window-bar"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span class="window-filename">{filename}</span><span class="window-status"><Icon name="tabler:activity" size={13} /> {liveLabel}</span></div>
-	<div class="portrait"><img src={image} alt={alt} loading="eager"/><span class="portrait-latency">{latency}</span><div class="portrait-state"><small>{stateLabel}</small><strong>{state}</strong></div></div>
-	<div class="photo-meta"><span>{architecture}</span><span>{memory}</span></div>
+  <div class="window-bar">
+    <div class="window-dots" aria-hidden="true">
+      <i></i>
+      <i></i>
+      <i></i>
+    </div>
+    <span class="window-filename">{filename}</span>
+    <span class="window-status">
+      <Icon name="tabler:activity" size={13} /> {liveLabel}
+    </span>
+  </div>
+  <div class="portrait">
+    <img src={image} alt={alt} loading="eager" />
+    <span class="portrait-latency">{latency}</span>
+    <div class="portrait-state">
+      <small>{stateLabel}</small>
+      <strong>{state}</strong>
+    </div>
+  </div>
+  <div class="photo-meta">
+    <span>{architecture}</span>
+    <span>{memory}</span>
+  </div>
 </div>

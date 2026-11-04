@@ -1,10 +1,67 @@
 ---
 import { Icon } from 'astro-icon/components';
-interface Props { links: { label: string; href: string }[]; brand: string; cta: string }
-const { links, brand, cta } = Astro.props;
+interface Props {
+  links: { label: string; href: string; current?: boolean }[];
+  brand: string;
+  availability: string;
+  navLabel: string;
+  cta: string;
+}
+const { links, brand, availability, navLabel, cta } = Astro.props;
 ---
+
 <header class="site-header">
-	<a class="brand" href="#inicio" aria-label={brand}>{brand}<span>_</span></a>
-	<nav aria-label="Navegación principal">{links.map((link) => <a href={link.href}>{link.label}</a>)}</nav>
-	<a class="button button-primary header-cta" href="#contacto">{cta} <Icon name="tabler:arrow-up-right" size={16} /></a>
+  <div class="header-inner">
+    <div class="header-identity">
+      <a class="header-brand" href="#sobre-mi" aria-label={brand}>
+        {brand}
+      </a>
+      <div class="header-availability">
+        <span>{availability}</span>
+      </div>
+    </div>
+    <nav class="header-nav" aria-label={navLabel}>
+      {links.map((link: any) => (
+        <a
+          href={link.href}
+          class:list={{ 'is-active': link.current }}
+          aria-current={link.current ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+    <div class="header-actions">
+      <a class="header-cta" href="#contacto">
+        {cta}
+      </a>
+      <span class="header-avatar" aria-hidden="true">
+        <Icon name="tabler:user" size={18} />
+      </span>
+    </div>
+  </div>
 </header>
+
+<script>
+  const navLinks = [...document.querySelectorAll<HTMLAnchorElement>('.header-nav a[href^="#"]')];
+  const sections = navLinks
+    .map((link) => document.querySelector<HTMLElement>(link.getAttribute('href')!))
+    .filter((section): section is HTMLElement => section !== null);
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        for (const link of navLinks) {
+          const active = link.hash === `#${entry.target.id}`;
+          link.classList.toggle('is-active', active);
+          if (active) link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
+        }
+      }
+    },
+    { rootMargin: '-25% 0px -60% 0px' },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+</script>

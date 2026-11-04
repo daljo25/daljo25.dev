@@ -1,9 +1,40 @@
 ---
 import { Icon } from 'astro-icon/components';
-interface Props { status: string; socials: { label: string; href: string }[]; copyright: string; build: string }
+interface Props {
+  status: string;
+  socials: { label: string; href: string }[];
+  copyright: string;
+  build: string;
+}
 const { status, socials, copyright, build } = Astro.props;
 ---
+
 <footer class="site-footer">
-	<div class="footer-top"><span class="availability"><i></i>{status}</span><nav aria-label="Redes sociales">{socials.map((social) => <a href={social.href} target="_blank" rel="noreferrer"><Icon name={social.label === 'GitHub' ? 'tabler:brand-github' : social.label === 'LinkedIn' ? 'tabler:brand-linkedin' : 'tabler:brand-x'} size={16} />{social.label}</a>)}</nav></div>
-	<div class="footer-bottom"><p>{copyright}</p><span>{build}</span></div>
+  <div class="footer-top">
+    <span class="availability">
+      <i></i>
+      {status}
+    </span>
+    <nav aria-label="Redes sociales">
+      {socials.map((social) => (
+        <a href={social.href} target="_blank" rel="noreferrer">
+          <Icon
+            name={
+              social.label === 'GitHub'
+                ? 'tabler:brand-github'
+                : social.label === 'LinkedIn'
+                  ? 'tabler:brand-linkedin'
+                  : 'tabler:brand-x'
+            }
+            size={16}
+          />
+          {social.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>{copyright}</p>
+    <span>{build}</span>
+  </div>
 </footer>

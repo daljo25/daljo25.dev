@@ -1,8 +1,19 @@
 ---
-interface Props { number: string; title: string; heading?: string; summary?: string }
+interface Props {
+  number: string;
+  title: string;
+  heading?: string;
+  summary?: string;
+}
 const { number, title, heading, summary } = Astro.props;
 ---
+
 <header class="section-heading">
-	<div><p class="eyebrow"><span>{number} //</span> {title}</p>{heading && <h2>{heading}</h2>}</div>
-	{summary && <p class="section-summary">{summary}</p>}
+  <div>
+    <p class="eyebrow">
+      <span>{number} //</span> {title}
+    </p>
+    {heading && <h2>{heading}</h2>}
+  </div>
+  {summary && <p class="section-summary">{summary}</p>}
 </header>

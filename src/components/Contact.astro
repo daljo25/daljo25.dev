@@ -1,7 +1,65 @@
 ---
 import { Icon } from 'astro-icon/components';
 import WindowFrame from './WindowFrame.astro';
-interface Props { data: any }
+interface Props {
+  data: any;
+}
 const { data } = Astro.props;
 ---
-<section id="contacto" class="page-section"><WindowFrame filename={data.windowFilename} status={data.windowStatus}><div class="contact-grid"><div><p class="eyebrow">06 // {data.sectionTitle}</p><h2>{data.heading}</h2><p>{data.description}</p><p class="contact-email"><small>{data.emailLabel}</small><a href={`mailto:${data.email}`}>{data.email}</a></p><nav class="contact-socials">{data.socials.map((item: any) => <a href={item.href} target="_blank" rel="noreferrer">{item.label} <Icon name={item.label === 'GitHub' ? 'tabler:brand-github' : 'tabler:brand-linkedin'} size={16} /></a>)}</nav></div><form action={data.formAction} method="POST"><label>{data.nameLabel}<input name="name" required placeholder={data.namePlaceholder}/></label><label>{data.emailFieldLabel}<input name="email" type="email" required placeholder={data.emailPlaceholder}/></label><label>{data.typeLabel}<select name="project_type">{data.projectTypes.map((type: any) => <option value={type.value}>{type.label}</option>)}</select></label><label>{data.messageLabel}<textarea name="message" required rows="4" placeholder={data.messagePlaceholder}></textarea></label><button class="button button-primary" type="submit">{data.submitLabel} <Icon name="tabler:send" size={17} /></button></form></div></WindowFrame></section>
+
+<section id="contacto" class="page-section">
+  <WindowFrame filename={data.windowFilename} status={data.windowStatus}>
+    <div class="contact-grid">
+      <div>
+        <p class="eyebrow">06 // {data.sectionTitle}</p>
+        <h2>{data.heading}</h2>
+        <p>{data.description}</p>
+        <p class="contact-email">
+          <small>{data.emailLabel}</small>
+          <a href={`mailto:${data.email}`}>{data.email}</a>
+        </p>
+        <nav class="contact-socials">
+          {data.socials.map((item: any) => (
+            <a href={item.href} target="_blank" rel="noreferrer">
+              {item.label}{' '}
+              <Icon
+                name={item.label === 'GitHub' ? 'tabler:brand-github' : 'tabler:brand-linkedin'}
+                size={16}
+              />
+            </a>
+          ))}
+        </nav>
+      </div>
+      <form action={data.formAction} method="POST">
+        <label>
+          {data.nameLabel}
+          <input name="name" required placeholder={data.namePlaceholder} />
+        </label>
+        <label>
+          {data.emailFieldLabel}
+          <input name="email" type="email" required placeholder={data.emailPlaceholder} />
+        </label>
+        <label>
+          {data.typeLabel}
+          <select name="project_type">
+            {data.projectTypes.map((type: any) => (
+              <option value={type.value}>{type.label}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          {data.messageLabel}
+          <textarea
+            name="message"
+            required
+            rows="4"
+            placeholder={data.messagePlaceholder}
+          ></textarea>
+        </label>
+        <button class="button button-primary" type="submit">
+          {data.submitLabel} <Icon name="tabler:send" size={17} />
+        </button>
+      </form>
+    </div>
+  </WindowFrame>
+</section>

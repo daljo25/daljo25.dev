@@ -1,8 +1,47 @@
 ---
 import { Icon } from 'astro-icon/components';
 import SectionHeading from './SectionHeading.astro';
-interface Props { data: any; items: any[] }
+interface Props {
+  data: any;
+  items: any[];
+}
 const { data, items } = Astro.props;
 const orderedItems = [...items].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 ---
-<section id="open-source" class="page-section"><SectionHeading number="03" title={data.sectionTitle} heading={data.heading}/><div class="utility-grid">{orderedItems.map(({ data: item }) => <article class="utility-card"><div class="window-bar"><div class="window-dots"><i></i><i></i><i></i></div><span class="window-filename">{item.path}</span><span class="window-status">{item.version}</span></div><div class="utility-content"><p class="eyebrow">$ {item.command}</p><img src={item.image} alt={item.imageAlt} loading="lazy"/><h3>{item.name}</h3><p>{item.description}</p><aside><strong>{data.problemLabel}</strong><p>{item.problem}</p><strong>{data.outcomeLabel}</strong><p>{item.outcome}</p></aside><div class="utility-footer"><span>{item.tags.join(' · ')}</span><a href={item.href}>{item.linkLabel} <Icon name="tabler:arrow-up-right" size={15} /></a></div></div></article>)}</div></section>
+
+<section id="open-source" class="page-section">
+  <SectionHeading number="03" title={data.sectionTitle} heading={data.heading} />
+  <div class="utility-grid">
+    {orderedItems.map(({ data: item }) => (
+      <article class="utility-card">
+        <div class="window-bar">
+          <div class="window-dots">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+          <span class="window-filename">{item.path}</span>
+          <span class="window-status">{item.version}</span>
+        </div>
+        <div class="utility-content">
+          <p class="eyebrow">$ {item.command}</p>
+          <img src={item.image} alt={item.imageAlt} loading="lazy" />
+          <h3>{item.name}</h3>
+          <p>{item.description}</p>
+          <aside>
+            <strong>{data.problemLabel}</strong>
+            <p>{item.problem}</p>
+            <strong>{data.outcomeLabel}</strong>
+            <p>{item.outcome}</p>
+          </aside>
+          <div class="utility-footer">
+            <span>{item.tags.join(' · ')}</span>
+            <a href={item.href}>
+              {item.linkLabel} <Icon name="tabler:arrow-up-right" size={15} />
+            </a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

@@ -16,9 +16,9 @@ socials:
   - label: x.com/daljo25
     href: https://x.com/daljo25
 photo:
-  image: https://lh3.googleusercontent.com/aida-public/AB6AXuD3oRt2iZaITIkjlrPINZ6Cr6YS9aNDl3ROAqZJ9echk7SNk5DdzTjV4vINRgR02TEKYxo2QbbiYVw_FWkd9PDemac9OEGvnMORcwU6PY4Wbo9iATB0BZxMO_PVhZGzknqYfB0-E6OJPgArnXfHof9LlNol4E77W_juZmJRsXn9jIF7gKIVFAAusIde2LvhDgLATAH3RoOG_3RYVGrobqpesqt0_oob6c1zuD1pkufF
+  image: /daljo25.webp
   alt: Retrato editorial de un desarrollador en un estudio oscuro.
-  filename: PHOTO // DALJO25.WEBP
+  filename: DALJO25.WEBP
   liveLabel: LIVE
   latency: 'LATENCY: 18ms • SVQ'
   stateLabel: ESTADO ACTUAL

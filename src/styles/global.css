@@ -260,11 +260,36 @@ p {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.window-title {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  color: var(--color-primary);
+}
+.window-title > [data-icon] { flex: none; }
+.window-title .window-filename { color: var(--color-text-muted); }
 .window-status {
   flex: none;
   color: var(--color-primary);
   font: 0.6rem var(--font-mono);
 }
+.terminal-prompt {
+  display: flex;
+  min-height: 2.1rem;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 1rem;
+  border-bottom: 1px solid rgb(60 74 66 / 20%);
+  background: rgb(40 42 46 / 60%);
+  color: var(--color-text-subtle);
+  font: 0.65rem var(--font-mono);
+}
+.terminal-prompt > span:first-child { color: var(--color-primary); font-weight: 700; }
+.terminal-prompt > span:nth-child(2) { color: var(--color-secondary); }
+.terminal-prompt strong { color: var(--color-text); font-weight: 400; }
+.terminal-prompt i { width: 0.45rem; height: 0.9rem; margin-left: 0.15rem; background: var(--color-primary); animation: blink 1s steps(2) infinite; }
 .portrait {
   position: relative;
   aspect-ratio: 4 / 5;

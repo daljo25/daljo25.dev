@@ -4,6 +4,10 @@ order: 1
 sectionTitle: Sobre mí
 windowFilename: ~/portfolio/about.md
 windowStatus: UTF-8 · zsh
+terminalPrompt:
+  user: daljo25@workstation
+  path: '~/portfolio/'
+  command: cat about.md
 heading: Construyo software con obsesión por el detalle, agilidad y cero rodeos.
 paragraphs:
   - Empecé a picar código por pura curiosidad: desmontando sitios para entender por qué algunos se sentían lentos y pesados mientras otros volaban. Con los años esa curiosidad se convirtió en una devoción por la velocidad real, la tipografía bien cuidada y la satisfacción de entregar interfaces nítidas donde cada interacción responde al instante.

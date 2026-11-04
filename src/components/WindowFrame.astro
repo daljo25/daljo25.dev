@@ -1,9 +1,12 @@
 ---
+import { Icon } from 'astro-icon/components';
 interface Props {
   filename: string;
   status?: string;
+  icon?: string;
+  prompt?: { user: string; path: string; command: string };
 }
-const { filename, status = 'LIVE' } = Astro.props;
+const { filename, status = 'LIVE', icon, prompt } = Astro.props;
 ---
 
 <div class="window-frame">
@@ -13,9 +16,13 @@ const { filename, status = 'LIVE' } = Astro.props;
       <i></i>
       <i></i>
     </div>
-    <span class="window-filename">{filename}</span>
+    <span class="window-title">
+      {icon && <Icon name={icon} size={15} />}
+      <span class="window-filename">{filename}</span>
+    </span>
     <span class="window-status">{status}</span>
   </div>
+  {prompt && <div class="terminal-prompt"><span>{prompt.user}</span>:<span>{prompt.path}</span>$ <strong>{prompt.command}</strong><i aria-hidden="true"></i></div>}
   <div class="window-content">
     <slot />
   </div>

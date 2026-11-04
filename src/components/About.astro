@@ -9,7 +9,12 @@ const { data } = Astro.props;
 
 <section id="sobre-mi" class="page-section">
   <SectionHeading number="01" title={data.sectionTitle} />
-  <WindowFrame filename={data.windowFilename} status={data.windowStatus}>
+  <WindowFrame
+    filename={data.windowFilename}
+    status={data.windowStatus}
+    icon="tabler:terminal-2"
+    prompt={data.terminalPrompt}
+  >
     <div class="about-grid">
       <div>
         <h2>{data.heading}</h2>

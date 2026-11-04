@@ -396,6 +396,32 @@ p {
   grid-template-columns: 1.25fr 0.75fr;
   gap: clamp(2rem, 5vw, 5rem);
 }
+.about-animation { position: relative; }
+.about-source {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: none;
+  overflow: hidden;
+  margin: 0;
+  color: var(--color-text-muted);
+  font: 0.78rem/1.65 var(--font-mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.about-source::first-line { color: var(--color-primary); }
+.about-source i {
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.9rem;
+  margin-left: 0.15rem;
+  background: var(--color-primary);
+  vertical-align: -0.12rem;
+  animation: blink 1s steps(2) infinite;
+}
+.about-animation.is-typing .about-source { display: block; }
+.about-animation.is-typing .about-grid { opacity: 0; }
+.about-grid { transition: opacity 0.2s ease; }
 .about-grid h2 {
   margin-bottom: 1rem;
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);

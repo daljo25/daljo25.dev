@@ -5,6 +5,18 @@ interface Props {
   data: any;
 }
 const { data } = Astro.props;
+const markdownSource = [
+  `# ${data.heading}`,
+  ...data.paragraphs,
+  `_${data.signature}_`,
+  `## ${data.principlesTitle}`,
+  ...data.principles.flatMap((item: { title: string; description: string }) => [
+    `### ${item.title}`,
+    item.description,
+  ]),
+  `### ${data.outsideTitle}`,
+  data.outside,
+].join('\n\n');
 ---
 
 <section id="sobre-mi" class="page-section">
@@ -15,27 +27,70 @@ const { data } = Astro.props;
     icon="tabler:terminal-2"
     prompt={data.terminalPrompt}
   >
-    <div class="about-grid">
-      <div>
-        <h2>{data.heading}</h2>
-        {data.paragraphs.map((paragraph: string) => (
-          <p>{paragraph}</p>
-        ))}
-        <p class="signature">{data.signature}</p>
-      </div>
-      <div class="principles">
-        <h3>{data.principlesTitle}</h3>
-        {data.principles.map((item: any) => (
-          <article>
-            <h4>{item.title}</h4>
-            <p>{item.description}</p>
-          </article>
-        ))}
-        <aside>
-          <strong>{data.outsideTitle}</strong>
-          <p>{data.outside}</p>
-        </aside>
+    <div class="about-animation" data-typing-duration={data.typingDurationMs ?? 2500}>
+      <pre class="about-source" aria-hidden="true" data-markdown={markdownSource}><span></span><i></i></pre>
+      <div class="about-grid">
+        <div class="about-copy">
+          <h2>{data.heading}</h2>
+          {data.paragraphs.map((paragraph: string) => (
+            <p>{paragraph}</p>
+          ))}
+          <p class="signature">{data.signature}</p>
+        </div>
+        <div class="principles">
+          <h3>{data.principlesTitle}</h3>
+          {data.principles.map((item: any) => (
+            <article>
+              <h4>{item.title}</h4>
+              <p>{item.description}</p>
+            </article>
+          ))}
+          <aside>
+            <strong>{data.outsideTitle}</strong>
+            <p>{data.outside}</p>
+          </aside>
+        </div>
       </div>
     </div>
   </WindowFrame>
 </section>
+
+<script>
+  const aboutAnimation = document.querySelector<HTMLElement>('.about-animation');
+  const markdown = aboutAnimation?.querySelector<HTMLElement>('.about-source');
+  const typedText = markdown?.querySelector<HTMLSpanElement>('span');
+  const renderedCopy = aboutAnimation?.querySelector<HTMLElement>('.about-grid');
+  const source = markdown?.dataset.markdown ?? '';
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (aboutAnimation && markdown && typedText && renderedCopy && source && !reducedMotion) {
+    let hasPlayed = false;
+    const observer = new IntersectionObserver((entries) => {
+      if (hasPlayed || !entries.some((entry) => entry.isIntersecting)) return;
+      hasPlayed = true;
+      aboutAnimation.classList.add('is-typing');
+
+      const duration = Number(aboutAnimation.dataset.typingDuration) || 2500;
+      const startedAt = performance.now();
+
+      const type = (now: number) => {
+        const progress = Math.min((now - startedAt) / duration, 1);
+        const characterCount = Math.floor(progress * source.length);
+        typedText.textContent = source.slice(0, characterCount);
+
+        if (progress < 1) {
+          requestAnimationFrame(type);
+          return;
+        }
+
+        aboutAnimation.classList.remove('is-typing');
+        renderedCopy.classList.add('animate-fade-in', 'animate-duration-300');
+        observer.disconnect();
+      };
+
+      requestAnimationFrame(type);
+    }, { threshold: 0.2 });
+
+    observer.observe(aboutAnimation);
+  }
+</script>

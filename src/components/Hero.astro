@@ -1,0 +1,13 @@
+---
+import DevFoto from './DevFoto.astro';
+import { Icon } from 'astro-icon/components';
+interface Props { data: any }
+const { data } = Astro.props;
+---
+<section id="inicio" class="page-section hero-section">
+	<div class="hero-copy"><p class="availability"><i></i>{data.availability}</p><h1>{data.role} <span>{data.highlight}</span> {data.titleEnd}</h1><p class="hero-lead" set:html={data.pitch}></p>
+		<div class="hero-actions"><a class="button button-primary" href="#proyectos">{data.primaryCta} <Icon name="tabler:arrow-down" size={18} /></a><a class="button button-secondary" href="#contacto">{data.secondaryCta} <Icon name="tabler:arrow-up-right" size={18} /></a></div>
+		<div class="hero-socials"><span>{data.socialLabel}</span>{data.socials.map((social: any) => <a href={social.href} target="_blank" rel="noreferrer">{social.label}</a>)}</div>
+	</div>
+	<DevFoto {...data.photo} />
+</section>

@@ -1,0 +1,8 @@
+---
+import { Icon } from 'astro-icon/components';
+import SectionHeading from './SectionHeading.astro';
+import WindowFrame from './WindowFrame.astro';
+interface Props { data: any }
+const { data } = Astro.props;
+---
+<section id="stack" class="page-section"><SectionHeading number="05" title={data.sectionTitle} heading={data.heading}/><WindowFrame filename={data.windowFilename} status={data.windowStatus}><div class="skill-grid">{data.groups.map((group: any) => <article><h3>{group.name}</h3><ul>{group.skills.map((skill: string) => <li>{skill}<span><Icon name="tabler:circle-filled" size={8} /></span></li>)}</ul></article>)}</div></WindowFrame></section>

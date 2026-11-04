@@ -1,0 +1,8 @@
+---
+interface Props { filename: string; status?: string }
+const { filename, status = 'LIVE' } = Astro.props;
+---
+<div class="window-frame">
+	<div class="window-bar"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span class="window-filename">{filename}</span><span class="window-status">{status}</span></div>
+	<div class="window-content"><slot /></div>
+</div>

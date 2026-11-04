@@ -1,0 +1,8 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import ProjectCard from './ProjectCard.astro';
+interface Props { data: any; projects: any[] }
+const { data, projects } = Astro.props;
+const orderedProjects = [...projects].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+---
+<section id="proyectos" class="page-section"><SectionHeading number="02" title={data.sectionTitle} heading={data.heading} summary={data.summary} />{orderedProjects.map((project, index) => <ProjectCard project={project.data} reverse={index % 2 === 1} />)}</section>

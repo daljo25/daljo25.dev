@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>Developer Portfolio</title><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;scroll-behavior:smooth;}body{overscroll-behavior:none;background-color:#111317;background-image:radial-gradient(rgba(134,148,138,0.12) 1px,transparent 1px);background-size:24px 24px;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}
+.window-frame {
+  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7), 0 0 0 1px rgba(60,74,66,0.35);
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.cursor-blink { animation: blink 1s infinite; }
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-surface-variant": "#bbcabf", "surface-container-highest": "#333539", "on-secondary-fixed-variant": "#004e5c", "secondary-fixed": "#acedff", "surface-container-high": "#282a2e", "surface-dim": "#111317", "tertiary-fixed": "#ffdad7", "surface-container-lowest": "#0c0e12", "on-tertiary-container": "#711419", "surface-tint": "#4edea3", "primary-container": "#10b981", "surface-variant": "#333539", "inverse-primary": "#006c49", "on-tertiary-fixed-variant": "#842225", "on-tertiary-fixed": "#410005", "on-primary": "#003824", "on-secondary": "#003640", "outline": "#86948a", "on-error-container": "#ffdad6", "on-primary-container": "#00422b", "surface": "#111317", "primary-fixed": "#6ffbbe", "surface-bright": "#37393e", "on-primary-fixed-variant": "#005236", "inverse-on-surface": "#2f3035", "background": "#111317", "tertiary-container": "#fc7c78", "on-secondary-fixed": "#001f26", "error": "#ffb4ab", "on-error": "#690005", "on-primary-fixed": "#002113", "tertiary-fixed-dim": "#ffb3af", "inverse-surface": "#e2e2e8", "error-container": "#93000a", "on-tertiary": "#650911", "on-surface": "#e2e2e8", "primary-fixed-dim": "#4edea3", "secondary": "#4cd7f6", "outline-variant": "#3c4a42", "on-background": "#e2e2e8", "secondary-fixed-dim": "#4cd7f6", "surface-container": "#1e2024", "on-secondary-container": "#00424e", "primary": "#4edea3", "tertiary": "#ffb3af", "secondary-container": "#03b5d3", "surface-container-low": "#1a1c20" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin-lg": "4rem", "gutter-sm": "1rem", "gutter": "1.5rem", "space-md": "1rem", "gutter-lg": "2rem", "space-xl": "2.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "margin-sm": "1rem", "margin": "1.5rem", "space-lg": "1.5rem" }, "fontFamily": { "body-lg": ["Geist"], "headline-md": ["Geist"], "headline-lg-mobile": ["Geist"], "code-inline": ["JetBrains Mono"], "headline-xl-mobile": ["Geist"], "headline-sm": ["Geist"], "body-md": ["Geist"], "label-md": ["JetBrains Mono"], "label-sm": ["JetBrains Mono"], "headline-xl": ["Geist"], "headline-lg": ["Geist"], "body-sm": ["Geist"] }, "fontSize": { "body-lg": ["1.125rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-md": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-lg-mobile": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.02em", "fontWeight": "600" }], "code-inline": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-xl-mobile": ["2.5rem", { "lineHeight": "3rem", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-sm": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "500" }], "body-md": ["1rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["0.8125rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "500" }], "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.06em", "fontWeight": "500" }], "headline-xl": ["4rem", { "lineHeight": "4.5rem", "letterSpacing": "-0.04em", "fontWeight": "700" }], "headline-lg": ["2.75rem", { "lineHeight": "3.25rem", "letterSpacing": "-0.03em", "fontWeight": "600" }], "body-sm": ["0.875rem", { "lineHeight": "1.375rem", "letterSpacing": "0em", "fontWeight": "400" }] } } } }</script></head><body class="bg-background font-body-md text-on-surface antialiased min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-20 max-w-[1200px] mx-auto px-gutter flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm group text-decoration-none" data-path="sobre-mi" href="#sobre-mi"><span class="font-code-inline text-code-inline font-bold text-primary group-hover:text-primary-fixed transition-colors">&lt;dev /&gt;</span></a><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-primary-container/10 border border-primary-container/20"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Available for freelance &amp; select roles</span></div></div><nav class="hidden md:flex items-center gap-space-lg" data-active-classes="text-primary font-bold"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="sobre-mi" href="#sobre-mi">Sobre mí</a><a aria-current="page" class="transition-colors text-primary font-bold" data-path="proyectos" href="#proyectos">Proyectos</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="open-source" href="#open-source">Open Source</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="experimentos" href="#experimentos">Experimentos</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="tech-stack" href="#tech-stack">Tech</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="contacto" href="#contacto">Contacto</a></nav><div class="flex items-center gap-space-md"><a class="inline-flex items-center justify-center px-space-md py-space-sm rounded-lg bg-primary hover:bg-primary-fixed text-on-primary font-label-md text-label-md font-semibold transition-all duration-150 hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] hover:scale-[1.01]" data-path="contacto" href="#contacto">Hablemos</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-transparent min-h-screen"><div class="flex flex-col w-full text-on-surface">
+<!-- =========================================================================
+       HERO SECTION
+       ========================================================================= -->
+<section class="relative w-full max-w-[1200px] mx-auto px-gutter py-space-xl lg:py-24 overflow-hidden">
+<!-- Ambient Backdrop Signal Glows -->
+<div class="absolute -top-32 -left-20 w-96 h-96 rounded-full bg-primary/10 blur-[120px] pointer-events-none -z-10"></div>
+<div class="absolute top-1/2 -right-32 w-80 h-80 rounded-full bg-secondary/10 blur-[140px] pointer-events-none -z-10"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-gutter-lg items-center">
+<!-- Left Column: Impact Copy & CTAs (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col items-start space-y-space-md">
+<!-- Live Status Pill -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-primary-container/10 shadow-[0_0_20px_rgba(16,185,129,0.12)]">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold">
+            Disponible para proyectos freelance &amp; alianzas estratégicas
+          </span>
+</div>
+<!-- Monolithic Main Headline -->
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight leading-none">
+          Desarrollador <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-fixed to-secondary">Full Stack</span> enfocado en rendimiento, interfaces precisas y herramientas robustas.
+        </h1>
+<!-- Strategic Narrative Pitch -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+          Construyendo con <strong class="text-on-surface font-semibold">Astro, Tailwind CSS, Laravel &amp; Filament</strong>. Software limpio, arquitectura predecible y detalle artesanal enfocado en resolución pragmática de producto.
+        </p>
+<!-- CTAs Primary & Secondary -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-sm w-full sm:w-auto">
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-3 rounded-lg bg-primary hover:bg-primary-fixed text-on-primary font-label-md text-label-md font-semibold transition-all duration-200 hover:scale-[1.01] hover:shadow-[0_0_24px_rgba(16,185,129,0.28)]" href="#proyectos">
+<span>Ver Proyectos Seleccionados</span>
+<span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+</a>
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-3 rounded-lg bg-surface-container hover:bg-surface-bright text-on-surface hover:text-secondary font-label-md text-label-md font-medium transition-all duration-200" href="#contacto">
+<span>Iniciar Contacto</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<!-- Monospaced Quick Repos & Social Links -->
+<div class="flex items-center gap-space-md pt-space-xs font-label-sm text-label-sm text-outline">
+<span class="text-on-surface-variant uppercase tracking-widest text-[11px]">Écosistema:</span>
+<a class="inline-flex items-center gap-1 hover:text-primary transition-colors py-1 px-2 rounded bg-surface-container-low hover:bg-surface-container" href="https://github.com" rel="noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[14px]">terminal</span>
+<span>github.com/developer</span>
+</a>
+<a class="inline-flex items-center gap-1 hover:text-secondary transition-colors py-1 px-2 rounded bg-surface-container-low hover:bg-surface-container" href="https://linkedin.com" rel="noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[14px]">share</span>
+<span>linkedin/in/dev</span>
+</a>
+</div>
+</div>
+<!-- Right Column: Interactive Tilt Avatar / Technical Specimen (5 Cols) -->
+<div class="lg:col-span-5 flex justify-center lg:justify-end mt-space-lg lg:mt-0">
+<div class="relative group w-full max-w-[420px] rounded-xl bg-surface-container-low p-space-md shadow-2xl transition-transform duration-200 ease-out will-change-transform window-frame" id="hero-avatar-card" style="transform-style: preserve-3d;">
+<!-- Terminal Sub-header Bar -->
+<div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block shadow-sm"></span>
+<span class="ml-2 font-code-inline text-label-sm text-outline">SESSION // DEV_OPERATOR.TSX</span>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span>LIVE</span>
+</div>
+</div>
+<!-- Technical Portrait Viewport -->
+<div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out" data-alt="Editorial cinematic studio portrait of a focused modern software engineer in a minimal dark room. Crisp side lighting with emerald and cyan rim highlights reflecting off structural concrete walls and subtle ambient multi-monitor reflections. Clean cinematic high-contrast aesthetic, deep charcoal shadows, 35mm shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3oRt2iZaITIkjlrPINZ6Cr6YS9aNDl3ROAqZJ9echk7SNk5DdzTjV4vINRgR02TEKYxo2QbbiYVw_FWkd9PDemac9OEGvnMORcwU6PY4Wbo9iATB0BZxMO_PVhZGzknqYfB0-E6OJPgArnXfHof9LlNol4E77W_juZmJRsXn9jIF7gKIVFAAusIde2LvhDgLATAH3RoOG_3RYVGrobqpesqt0_oob6c1zuD1pkufF"/>
+<!-- Technical Overlay HUD -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-80 pointer-events-none"></div>
+<!-- Monospaced Floating Badges -->
+<div class="absolute top-3 left-3 px-2 py-1 rounded bg-surface/90 backdrop-blur-md shadow-sm">
+<span class="font-code-inline text-label-sm text-secondary font-medium tracking-tight">LATENCY: 18ms • MAD</span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 p-3 rounded-lg bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">ESTADO ACTUAL</p>
+<p class="font-code-inline text-code-inline text-primary font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+                  Status: Coding • Astro v4 + Laravel
+                </p>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+</div>
+<!-- Base Spec Metadata -->
+<div class="mt-space-sm pt-space-xs flex items-center justify-between font-label-sm text-label-sm text-outline">
+<span>ARCH: MODULAR_MONOLITH</span>
+<span>MEMORY_LOAD: NOMINAL</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       SECCIÓN: SOBRE MÍ (REDISEÑO HUMANO, EDITORIAL & CERCANO)
+       ========================================================================= -->
+<section class="w-full max-w-[1200px] mx-auto px-gutter py-space-xl" id="sobre-mi">
+<!-- Section Label Header -->
+<div class="flex items-center gap-space-sm mb-space-md">
+<span class="font-code-inline text-label-sm text-primary">01 //</span>
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Sobre mí</h2>
+</div>
+<!-- macOS App Window Container -->
+<div class="w-full rounded-2xl bg-surface-container-low border border-outline-variant/30 window-frame overflow-hidden">
+<!-- Window Titlebar -->
+<div class="px-space-md py-3 bg-surface-container-lowest border-b border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block shadow-sm"></span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[15px] text-primary">terminal</span>
+<span>~/portfolio/about.md</span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-outline">
+<span class="hidden sm:inline">UTF-8</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary text-[11px] font-semibold">• zsh</span>
+</div>
+</div>
+<!-- Terminal Breadcrumbs & Prompt Bar -->
+<div class="px-space-md py-2 bg-surface-container/60 border-b border-outline-variant/20 flex items-center gap-2 font-code-inline text-label-sm text-outline">
+<span class="text-primary font-bold">dev@workstation</span>:<span class="text-secondary">~</span>$ <span class="text-on-surface">cat about_me.txt</span>
+<span class="w-2 h-4 bg-primary inline-block cursor-blink ml-1"></span>
+</div>
+<!-- Window Body Content -->
+<div class="p-space-lg lg:p-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-gutter-lg items-start">
+<!-- Left Column: Personal Narrative & Philosophy (7 cols) -->
+<div class="lg:col-span-7 flex flex-col space-y-space-md">
+<h3 class="font-headline-lg text-headline-lg text-on-surface leading-tight font-semibold">
+          Construyo software con obsesión por el detalle, agilidad y cero rodeos.
+        </h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Empecé a picar código por pura curiosidad: desmontando sitios para entender por qué algunos se sentían lentos y pesados mientras otros volaban. Con los años esa curiosidad se convirtió en una devoción por la <span class="text-on-surface font-medium">velocidad real</span>, la tipografía bien cuidada y la satisfacción de entregar interfaces nítidas donde cada interacción responde al instante.
+        </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Cuando colaboro con agencias, startups o fundadores, no busco imponer dogmas ni acumular dependencias absurdas. Me enfoco en lo que realmente mueve la aguja: <strong class="text-on-surface font-medium">comunicación transparente y sin jerga vacía</strong>, entregas continuas que se pueden probar cada semana y una autonomía técnica que permite a los líderes de producto dormir tranquilos.
+        </p>
+<p class="font-body-md text-body-md text-outline leading-relaxed">
+          Disfruto enormemente encontrando el punto dulce entre un frontend hiperligero y un backend sólido como una roca. Si un problema complejo se puede resolver con una estructura de datos clara y veinte líneas de código limpio en lugar de tres librerías externas, esa siempre será mi primera opción.
+        </p>
+<!-- Subtle signature pill -->
+<div class="pt-space-xs flex items-center gap-space-sm">
+<div class="w-8 h-[1px] bg-primary/40"></div>
+<span class="font-code-inline text-label-sm text-primary font-medium tracking-wide">Desarrollador independiente • Crafting con calma y foco</span>
+</div>
+</div>
+<!-- Right Column: "Cómo trabajo en el día a día" + Curiosidades (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="p-space-lg rounded-2xl bg-surface-container border border-outline-variant/30 flex flex-col space-y-space-md shadow-lg">
+<!-- Header of the Card -->
+<div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-code-inline text-label-sm text-on-surface font-semibold tracking-wider uppercase">Cómo trabajo en el día a día</span>
+</div>
+<span class="font-code-inline text-[11px] text-outline">WORK_PRINCIPLES</span>
+</div>
+<!-- Principle 1 -->
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-primary font-code-inline text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>Pragmatismo &gt; Dogmatismo</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pl-6">
+              Si una solución simple resuelve el problema hoy sin generar deuda mañana, esa es exactamente la que elijo. El mejor código suele ser el que no hubo que escribir.
+            </p>
+</div>
+<!-- Principle 2 -->
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-secondary font-code-inline text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+<span>Craft digital integral</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pl-6">
+              Me preocupo tanto por lo que experimenta el usuario final (60fps continuos, microinteracciones cuidadas y cero saltos de layout) como por la legibilidad del código que leerá el siguiente dev.
+            </p>
+</div>
+<!-- Principle 3 -->
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-primary-fixed font-code-inline text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">layers</span>
+<span>Stack de preferencia</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pl-6">
+<strong class="text-on-surface font-medium">Astro</strong> en la capa web para máxima velocidad estática con cero JS innecesario, <strong class="text-on-surface font-medium">Tailwind CSS</strong> para diseño reactivo de alta fidelidad, y <strong class="text-on-surface font-medium">Laravel/Filament</strong> cuando la complejidad operativa exige potencia y fiabilidad empresarial.
+            </p>
+</div>
+<!-- Outside the Terminal box -->
+<div class="p-space-sm rounded-xl bg-surface-container-low border border-outline-variant/30 flex items-start gap-3 mt-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">local_cafe</span>
+<div class="space-y-1">
+<span class="font-code-inline text-[11px] text-outline uppercase tracking-wider block">Fuera de la terminal</span>
+<p class="font-body-sm text-[13px] text-on-surface-variant leading-snug">
+                Experimentos de fin de semana con amigos, café de especialidad filtrado y probar nuevas herramientas y frameworks antes de que se vuelvan mainstream.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       SECCIÓN: PROYECTOS PROFESIONALES (CASE STUDIES)
+       ========================================================================= -->
+<section class="w-full max-w-[1200px] mx-auto px-gutter py-space-xl" id="proyectos">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+<div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="font-code-inline text-label-sm text-primary">02 //</span>
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Producción Seleccionada</h2>
+</div>
+<p class="font-headline-lg text-headline-lg text-on-surface">Casos de estudio &amp; Arquitectura aplicada</p>
+</div>
+<p class="font-body-sm text-body-sm text-outline max-w-sm">
+        Sistemas productivos reales en los que he diseñado y ejecutado la infraestructura técnica y la experiencia de usuario final.
+      </p>
+</div>
+<div class="grid grid-cols-1 gap-space-xl">
+<!-- Project 1: Cáritas Flor de Cristal Window -->
+<article class="rounded-2xl bg-surface-container-low border border-outline-variant/30 window-frame overflow-hidden transition-all duration-300 hover:shadow-2xl">
+<!-- macOS Window Titlebar -->
+<div class="px-space-md py-3 bg-surface-container-lowest border-b border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block shadow-sm"></span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[15px] text-primary">dataset</span>
+<span>workspace://projects/caritas.app</span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-outline">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary text-[11px] font-semibold">• git:(release/v3.4)</span>
+</div>
+</div>
+<!-- CLI Breadcrumb bar -->
+<div class="px-space-md py-2 bg-surface-container/60 border-b border-outline-variant/20 flex items-center gap-2 font-code-inline text-label-sm text-outline">
+<span class="text-primary font-bold">❯</span> php artisan project:status --env=production
+    <span class="text-primary font-semibold ml-2">[HEALTH: 100%]</span>
+</div>
+<div class="p-space-lg lg:p-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-gutter-lg items-center">
+<!-- Visual Preview Column (6 cols) -->
+<div class="lg:col-span-6 flex flex-col gap-space-sm">
+<div class="relative w-full aspect-video rounded-xl overflow-hidden bg-surface-container-highest group border border-outline-variant/30">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Modern dark UI dashboard screenshot for non-profit social resource management, showcasing sleek clean tables with data filters, status chips, charts, and metrics widgets in emerald and slate tones on high-end monitors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3gmep85wMFnwCuhG9Ux3ujUUhm14YPJtXBiPItVicsLY986qA1Lyl4CEQFz4EIok9vOMmiRBlkwbIXch0pnH3-_Pp8WGBToeGCCDJquTOoWVK3YsFluN5-mil1Ila8FoUGCNTzSMF9tMu4vqGmM96XnbJRjPVk0YmYyLQQmopFk-7V97Ym9fGgBGUwLf6KLwObYfQ20bmShjbUm26KlN6vWykB-s6JwWcC5aJxLZX"/>
+<div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md">
+<span class="font-code-inline text-label-sm text-primary">LARAVEL // LIVEWIRE // FILAMENT</span>
+</div>
+</div>
+<!-- Mini Spec Bar -->
+<div class="grid grid-cols-3 gap-2 text-center p-2 rounded-lg bg-surface-container">
+<div>
+<span class="font-code-inline text-label-sm text-outline block text-[10px]">UPTIME</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">99.8%</span>
+</div>
+<div>
+<span class="font-code-inline text-label-sm text-outline block text-[10px]">REDUCCIÓN TIEMPO</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">-65%</span>
+</div>
+<div>
+<span class="font-code-inline text-label-sm text-outline block text-[10px]">REGISTROS / DÍA</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">12.5k</span>
+</div>
+</div>
+</div>
+<!-- Description & Architectural Breakdown (6 cols) -->
+<div class="lg:col-span-6 flex flex-col space-y-space-md">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider">PLATAFORMA DE GESTIÓN SOCIAL</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mt-1">Cáritas Flor de Cristal</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Sistema integral de gestión y visibilidad para operaciones de soporte comunitario. Diseñé desde cero la arquitectura de base de datos relacional y los paneles de administración basados en <strong class="text-on-surface">Filament PHP</strong>, automatizando la coordinación entre voluntarios, donantes y beneficiarios.
+        </p>
+<div class="space-y-space-xs text-body-sm text-outline">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong class="text-on-surface">Aportación concreta:</strong> Modelado de flujos de control de inventario, roles RBAC granulares y procesamiento asíncrono de reportes PDF.</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong class="text-on-surface">Optimización:</strong> Caché de consultas complejas en Redis reduciendo latencia promedio de consulta de 1.8s a 45ms.</span>
+</div>
+</div>
+<!-- Tech Badges -->
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="px-2.5 py-1 rounded bg-surface-container font-code-inline text-label-sm text-on-surface">Laravel 11</span>
+<span class="px-2.5 py-1 rounded bg-surface-container font-code-inline text-label-sm text-primary">Filament v3</span>
+<span class="px-2.5 py-1 rounded bg-surface-container font-code-inline text-label-sm text-secondary">Tailwind CSS</span>
+<span class="px-2.5 py-1 rounded bg-surface-container font-code-inline text-label-sm text-on-surface">PostgreSQL</span>
+<span class="px-2.5 py-1 rounded bg-surface-container font-code-inline text-label-sm text-on-surface">Docker</span>
+</div>
+<div class="flex items-center gap-space-md pt-2">
+<a class="inline-flex items-center gap-1.5 font-label-md text-label-md text-primary hover:text-primary-fixed transition-colors font-medium" href="#">
+<span>Ver Caso de Estudio Detallado</span>
+<span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Project 2: Gustavstudio Window -->
+<article class="rounded-2xl bg-surface-container-low border border-outline-variant/30 window-frame overflow-hidden transition-all duration-300 hover:shadow-2xl">
+<!-- macOS Window Titlebar -->
+<div class="px-space-md py-3 bg-surface-container-lowest border-b border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block shadow-sm"></span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[15px] text-secondary">web</span>
+<span>workspace://projects/gustavstudio.com</span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-outline">
+<span class="px-2 py-0.5 rounded bg-surface-container text-secondary text-[11px] font-semibold">• astro.config.mjs</span>
+</div>
+</div>
+<!-- CLI Breadcrumb bar -->
+<div class="px-space-md py-2 bg-surface-container/60 border-b border-outline-variant/20 flex items-center gap-2 font-code-inline text-label-sm text-outline">
+<span class="text-secondary font-bold">❯</span> astro build --ssr=false &amp;&amp; lighthouse --view
+    <span class="text-primary font-semibold ml-2">[PERF: 99/100]</span>
+</div>
+<div class="p-space-lg lg:p-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-gutter-lg items-center">
+<!-- Visual Preview Column (6 cols) -->
+<div class="lg:col-span-6 flex flex-col gap-space-sm lg:order-2">
+<div class="relative w-full aspect-video rounded-xl overflow-hidden bg-surface-container-highest group border border-outline-variant/30">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Ultra high-end avant-garde design studio website displayed on a sleek studio display. Dark monolithic typography, interactive 3D sculpture previews, responsive creative layouts in deep black tones with cyan accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPufbx6eRJL-dJ1n18wkhoPRpvYFBGRc5_SvWvGMFMV_rD_ol5-dLx3364fx3saHbskDwQFvHWzR885OIZvwDjsdLtRrHiKbU55lo3N-rmiZWWgAL0M9TK9XLokQ--FrT4JGV77ikr1ykFuofOT87uljFWCtX-da1mjR3s4Y7JABxGX8F_VtVM16sJpDKgv4E1YigKWVcyDeIvDm58pY5Osghjmq3fwXjUZKAdY06r"/>
+<div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md">
+<span class="font-code-inline text-label-sm text-secondary">ASTRO // TAILWIND // PERFORMANCE</span>
+</div>
+</div>
+<!-- Mini Spec Bar -->
+<div class="grid grid-cols-3 gap-2 text-center p-2 rounded-lg bg-surface-container">
+<div>
+<span class="font-code-inline text-label-sm text-outline block text-[10px]">LIGHTHOUSE</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">99/100</span>
+</div>
+<div>
+<span class="font-code-inline text-label-sm text-outline block text-[10px]">FIRST CONTENTFUL</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">0.4s</span>
+</div>
+<div>
+<span class="font-code-inline text-label-sm text-outline block text-[10px]">JS PAYLOAD</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">&lt;14kb</span>
+</div>
+</div>
+</div>
+<!-- Description & Architectural Breakdown (6 cols) -->
+<div class="lg:col-span-6 flex flex-col space-y-space-md lg:order-1">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider">ESTUDIO DE DISEÑO &amp; PRODUCCIÓN CREATIVA</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mt-1">Gustavstudio</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Experiencia digital interactiva de máxima fluidez para una firma de dirección de arte y producción multimedia. Arquitectura generada estáticamente con <strong class="text-on-surface">Astro</strong>, orquestando una carga progresiva de imágenes de ultra resolución y transiciones sin fisuras.
+        </p>
+<div class="space-y-space-xs text-body-sm text-outline">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong class="text-on-surface">Aportación concreta:</strong> Pipeline de optimización de imágenes WebP/AVIF automatizado en build y micro-interacciones CSS fluidas a 60fps.</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong class="text-on-surface">Reto superado:</strong> Cero saltos de contenido (CLS = 0) manteniendo tipografías monumentales y elementos visuales interactivos.</span>
+</div>
+</div>
+<!-- Tech Badges -->
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="px-2.5 py-1 rounded bg-surface-container font-code-inline text-label-sm text-primary">Astro v4</span>
+<span class="px-2.5 py-1 rounded bg-surface-container font-code-inline text-label-sm text-secondary">Tailwind CSS</span>
+<span class="px-2.5 py-1 rounded bg-surface-container font-code-inline text-label-sm text-on-surface">TypeScript</span>
+<span class="px-2.5 py-1 rounded bg-surface-container font-code-inline text-label-sm text-on-surface">View Transitions API</span>
+</div>
+<div class="flex items-center gap-space-md pt-2">
+<a class="inline-flex items-center gap-1.5 font-label-md text-label-md text-secondary hover:text-secondary-fixed transition-colors font-medium" href="#">
+<span>Explorar Sitio en Vivo</span>
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- =========================================================================
+       SECCIÓN: OPEN SOURCE CONTRIBUTIONS & UTILITIES (CON PREVIEWS VISUALES)
+       ========================================================================= -->
+<section class="w-full max-w-[1200px] mx-auto px-gutter py-space-xl" id="open-source">
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="font-code-inline text-label-sm text-primary">03 //</span>
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Ecosistema &amp; Open Source</h2>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-space-lg">
+      Herramientas creadas para la comunidad de desarrolladores
+    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Utility 1: Grit CLI macOS Window -->
+<div class="rounded-xl bg-surface-container-low border border-outline-variant/30 window-frame flex flex-col justify-between hover:border-primary/50 transition-all group overflow-hidden">
+<!-- Window Titlebar -->
+<div class="px-space-md py-2.5 bg-surface-container-lowest border-b border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block shadow-sm"></span>
+</div>
+<span class="font-code-inline text-[12px] text-on-surface-variant font-medium">terminal://tools/grit-cli</span>
+<span class="font-code-inline text-[11px] text-primary">• v1.4.2</span>
+</div>
+<!-- Sub-bar prompt -->
+<div class="px-space-md py-1.5 bg-surface-container/60 border-b border-outline-variant/20 flex items-center gap-1.5 font-code-inline text-[12px] text-outline">
+<span class="text-primary font-bold">$</span> grit init --template=fullstack
+  </div>
+<div class="p-space-lg flex flex-col justify-between h-full">
+<div>
+<!-- Previsualización Visual Panorámica -->
+<div class="relative w-full aspect-[16/9] rounded-lg overflow-hidden mb-space-md bg-surface-container-highest border border-outline-variant/30">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Modern dark mode developer tool interface preview, CLI terminal and code editor window showing colorful syntax highlighting and git release tag for Grit CLI tool, developer aesthetics, clean, glowing accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzkzEjGlvkDT_E5A81xRr0R2mmDC1nS63aWL1xDXLHgFfUoz9TRzj2VTMMj0tM8O81zGeebJeSp2EFyxp2FMwz9P41MbCtLbu0uTGDUCiNDv6dFhIdH_cH4GGZdJJWfITnj71iwVhE8U570McD00YY3sit6fyRR7l56Vw8LNEx6WrCgi8dUPnxfjSt8s_KfWd0fFP3BRUORXWaekL83ON4JYDvRZPtIaidaeOK3Z3m"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent pointer-events-none"></div>
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-surface/80 backdrop-blur-md">
+<span class="font-code-inline text-[11px] text-primary">CLI TOOLKIT // v1.4.2</span>
+</div>
+</div>
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">terminal</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Grit • CLI</span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-primary">v1.4.2</span>
+<span class="flex items-center gap-1 text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">star</span>340</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+        CLI ligero de productividad para flujos de trabajo ágiles. Elimina la fricción repetitiva y la configuración manual de boilerplates en el arranque de proyectos backend y frontend.
+      </p>
+<!-- Problem & Solution Box -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest space-y-2 mb-space-md border border-outline-variant/20">
+<div class="text-body-sm text-outline">
+<strong class="text-primary font-code-inline text-label-sm block">PROBLEMA RESUELTO:</strong>
+          Pérdida de hasta 4 horas configurando linting, Docker local, migraciones base y pipelines CI en cada nuevo microservicio.
+        </div>
+<div class="text-body-sm text-on-surface">
+<strong class="text-secondary font-code-inline text-label-sm block">RESULTADO:</strong>
+          Scaffolding completo y testeado listo en menos de 15 segundos con un único comando: <code class="font-code-inline text-label-sm bg-surface px-1.5 py-0.5 rounded text-primary">grit init &lt;stack&gt;</code>.
+        </div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-sm border-t border-outline-variant/20">
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-outline">
+<span>GO</span> • <span>BASH</span> • <span>CROSS-PLATFORM</span>
+</div>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:text-primary-fixed transition-colors" href="https://github.com" rel="noreferrer" target="_blank">
+<span>Repositorio</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Utility 2: Filament Plugins macOS Window -->
+<div class="rounded-xl bg-surface-container-low border border-outline-variant/30 window-frame flex flex-col justify-between hover:border-secondary/50 transition-all group overflow-hidden">
+<!-- Window Titlebar -->
+<div class="px-space-md py-2.5 bg-surface-container-lowest border-b border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block shadow-sm"></span>
+</div>
+<span class="font-code-inline text-[12px] text-on-surface-variant font-medium">composer://plugins/filament-suite</span>
+<span class="font-code-inline text-[11px] text-secondary">• packagist</span>
+</div>
+<!-- Sub-bar prompt -->
+<div class="px-space-md py-1.5 bg-surface-container/60 border-b border-outline-variant/20 flex items-center gap-1.5 font-code-inline text-[12px] text-outline">
+<span class="text-secondary font-bold">$</span> composer require dev/filament-realtime-suite
+  </div>
+<div class="p-space-lg flex flex-col justify-between h-full">
+<div>
+<!-- Previsualización Visual Panorámica -->
+<div class="relative w-full aspect-[16/9] rounded-lg overflow-hidden mb-space-md bg-surface-container-highest border border-outline-variant/30">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Modern sleek dark admin panel interface preview showing Laravel Filament metrics widgets, tables and elegant interactive dashboard components, dark theme with green accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKPeQpFQiFUV3f8Bclvgv-7Zo8nTOvUaU_kz0KU2EnqQ6EWOLIxt8ZfuCem4EhIJ1S7puKTNXB1t95QezxG5Z27yg9pMiqn150tpV1sJa7Fmp1TFghFjYeedxywhU99qI4NXgSo9dZa1G8nS6q9ZUqjZx0U1Hc6CCNkk3GNfKL2ByqVZEI-6SIBL7saj8Vuu6oe1Hq1cOCIKh2ZFUrqf-k4ppTZikYVp3emj1HRGwN"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent pointer-events-none"></div>
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-surface/80 backdrop-blur-md">
+<span class="font-code-inline text-[11px] text-secondary">ADMIN PLUGINS // FILAMENT</span>
+</div>
+</div>
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[24px]">extension</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Filament &amp; Laravel Suite</span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-secondary">PACKAGIST</span>
+<span class="flex items-center gap-1 text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">star</span>580</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+        Colección modular de extensiones open source para paneles de control Filament PHP: filtros en cascada reactivos, gráficos de métricas en tiempo real y utilidades administrativas de auditoría.
+      </p>
+<!-- Problem & Solution Box -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest space-y-2 mb-space-md border border-outline-variant/20">
+<div class="text-body-sm text-outline">
+<strong class="text-primary font-code-inline text-label-sm block">PROBLEMA RESUELTO:</strong>
+          Las interfaces administrativas de Filament carecían de visualización reactiva por websocket sin implementar infraestructura pesada de Node.
+        </div>
+<div class="text-body-sm text-on-surface">
+<strong class="text-secondary font-code-inline text-label-sm block">RESULTADO:</strong>
+          Drop-in components que se instalan vía Composer y añaden analíticas vivas con soporte para Laravel Reverb o Pusher sin líneas extra.
+        </div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-sm border-t border-outline-variant/20">
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-outline">
+<span>PHP 8.3</span> • <span>LIVEWIRE</span> • <span>FILAMENT V3</span>
+</div>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:text-secondary-fixed transition-colors" href="https://github.com" rel="noreferrer" target="_blank">
+<span>Ver en GitHub</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       SECCIÓN: PROYECTOS DE FIN DE SEMANA (OCIO & EXPERIMENTOS CON AMIGOS)
+       ========================================================================= -->
+<section class="w-full max-w-[1200px] mx-auto px-gutter py-space-xl" id="experimentos">
+<div class="rounded-2xl bg-surface-container-low border border-outline-variant/30 window-frame overflow-hidden">
+<!-- macOS Window Titlebar -->
+<div class="px-space-md py-3 bg-surface-container-lowest border-b border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block shadow-sm"></span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-secondary font-medium">
+<span class="material-symbols-outlined text-[15px]">sports_esports</span>
+<span>term://weekend-lab/hub.sh</span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-outline">
+<span class="px-2 py-0.5 rounded bg-surface-container text-secondary text-[11px] font-semibold">• node:v20</span>
+</div>
+</div>
+<div class="p-space-lg lg:p-space-xl">
+<!-- Visual Accent Marker -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="font-code-inline text-label-sm text-secondary">04 //</span>
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Weekend Lab</h2>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-secondary font-code-inline text-label-sm border border-outline-variant/30">
+<span class="material-symbols-outlined text-[16px]">sports_esports</span>
+<span>PROYECTOS PERSONALES // OCIO &amp; EXPERIMENTOS</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-gutter-lg">
+<div class="lg:col-span-5 flex flex-col justify-center">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-space-sm">
+          Experimentos de fin de semana para uso personal y con amigos
+        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+          Cosas que construyo en un fin de semana por pura diversión o para resolver una tarde con amigos. Sin burocracia, solo código rápido y útil.
+        </p>
+<div class="font-label-sm text-label-sm text-outline">
+          • Diversión pura • Cero burocracia • Código ligero y enfocado
+        </div>
+</div>
+<div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Experiment 1: Bingo App Window Mini -->
+<div class="rounded-xl bg-surface-container border border-outline-variant/30 overflow-hidden flex flex-col justify-between">
+<div class="px-3 py-2 bg-surface-container-lowest border-b border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></span>
+</div>
+<span class="font-code-inline text-[11px] text-outline">bingo.app</span>
+</div>
+<div class="p-space-md">
+<div class="flex items-center justify-between mb-2">
+<span class="font-code-inline text-label-sm text-primary">EN FAMILIA // OCIO</span>
+<span class="material-symbols-outlined text-outline text-[18px]">casino</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1">Bingo App</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+              Creado para jugar en familia y amigos en reuniones o eventos, con generador de cartones interactivo y locutor de números.
+            </p>
+<div class="p-2 rounded bg-surface-container-low font-code-inline text-label-sm text-outline mb-space-sm">
+              Stack: Web Components + IndexedDB + Audio API sintetizada.
+            </div>
+<a class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary hover:underline" href="#">
+<span>Probar Simulador</span>
+<span class="material-symbols-outlined text-[14px]">play_arrow</span>
+</a>
+</div>
+</div>
+<!-- Experiment 2: Quiniela del Mundial Window Mini -->
+<div class="rounded-xl bg-surface-container border border-outline-variant/30 overflow-hidden flex flex-col justify-between">
+<div class="px-3 py-2 bg-surface-container-lowest border-b border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></span>
+</div>
+<span class="font-code-inline text-[11px] text-outline">quiniela.app</span>
+</div>
+<div class="p-space-md">
+<div class="flex items-center justify-between mb-2">
+<span class="font-code-inline text-label-sm text-secondary">AMIGOS // PORRA</span>
+<span class="material-symbols-outlined text-outline text-[18px]">sports_soccer</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1">Quiniela del Mundial</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-xs">
+              Una app que monté en un par de días para competir la porra y pronósticos del torneo con mi grupo de amigos.
+            </p>
+<!-- Subtle Offline Status Banner -->
+<div class="my-2 p-2 rounded bg-surface-container-low border border-outline-variant/30 font-code-inline text-[11px] text-on-surface-variant">
+<span class="text-outline block">[Actualmente Offline — El mundial terminó, pero el recuerdo de la victoria sigue intacto]</span>
+</div>
+<div class="p-2 rounded bg-surface-container-low font-code-inline text-label-sm text-outline mb-space-sm">
+              Stack: Astro + NanoStores + Workbox + Sincronización local.
+            </div>
+<a class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary hover:underline" href="#">
+<span>Examinar Arquitectura</span>
+<span class="material-symbols-outlined text-[14px]">play_arrow</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       SECCIÓN: TECNOLOGÍAS (TECH SPHERE + ACCESSIBLE LIST VIEW)
+       ========================================================================= -->
+<section class="w-full max-w-[1200px] mx-auto px-gutter py-space-xl" id="tech-stack">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+<div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="font-code-inline text-label-sm text-primary">05 //</span>
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Stack &amp; Competencias Técnicas</h2>
+</div>
+<p class="font-headline-lg text-headline-lg text-on-surface">Dominio de tecnologías de alta producción</p>
+</div>
+<!-- Toggle Switch for Visualization vs Accessible Breakdown -->
+<div class="inline-flex p-1 rounded-lg bg-surface-container-low border border-outline-variant/30">
+<button class="px-3 py-1.5 rounded-md font-label-sm text-label-sm font-semibold transition-all bg-primary text-on-primary shadow-sm flex items-center gap-1.5" id="btn-view-interactive" onclick="switchTechView('interactive')">
+<span class="material-symbols-outlined text-[16px]">orbit</span>
+<span>Esfera 3D</span>
+</button>
+<button class="px-3 py-1.5 rounded-md font-label-sm text-label-sm font-semibold transition-all text-on-surface-variant hover:text-on-surface flex items-center gap-1.5" id="btn-view-accessible" onclick="switchTechView('accessible')">
+<span class="material-symbols-outlined text-[16px]">list_alt</span>
+<span>Lista Estructurada</span>
+</button>
+</div>
+</div>
+<!-- macOS Window Envelope for Tech Stack -->
+<div class="w-full rounded-2xl bg-surface-container-low border border-outline-variant/30 window-frame overflow-hidden">
+<!-- macOS Window Titlebar -->
+<div class="px-space-md py-3 bg-surface-container-lowest border-b border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block shadow-sm"></span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-primary font-medium">
+<span class="material-symbols-outlined text-[15px]">code_blocks</span>
+<span>stack://technologies/sphere.3d</span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-outline">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary text-[11px] font-semibold">• webgl</span>
+</div>
+</div>
+<!-- Container 1: Three.js Interactive Tech Sphere Globe -->
+<div class="relative w-full overflow-hidden transition-all duration-300" id="tech-interactive-container">
+<div class="absolute top-4 left-4 z-10 font-code-inline text-label-sm text-outline flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span>THREEJS_SCENE // 3D_TAG_SPHERE // ARRASTRA PARA GIRAR</span>
+</div>
+<div class="w-full h-[450px] flex items-center justify-center relative">
+</div>
+<div class="p-space-md bg-surface-container border-t border-outline-variant/20 flex flex-wrap items-center justify-between gap-space-sm text-body-sm text-outline font-code-inline">
+<span>PRIMARY: ASTRO • TAILWIND • LARAVEL • FILAMENT</span>
+<span class="text-primary">TIPADO ESTRICTO • CORE WEB VITALS OPTIMIZED</span>
+</div>
+</div>
+<!-- Container 2: Accessible Grouped Semantic Grid (Always available via toggle or screen readers) -->
+<div class="hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter p-space-lg transition-all duration-300" id="tech-accessible-container">
+<!-- Group 1: Frontend & UI -->
+<div class="p-space-md rounded-xl bg-surface-container flex flex-col space-y-space-sm border border-outline-variant/30">
+<div class="flex items-center gap-2 text-primary pb-2 border-b border-outline-variant/20">
+<span class="material-symbols-outlined text-[20px]">devices</span>
+<h4 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Frontend &amp; UI</h4>
+</div>
+<ul class="space-y-2 font-code-inline text-body-sm text-on-surface-variant">
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Astro (Islands Arch)</span><span class="text-primary font-bold">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Tailwind CSS v3 / v4</span><span class="text-secondary font-bold">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>TypeScript (Strict)</span><span class="text-secondary font-bold">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Vue.js • React</span><span class="text-outline">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Vanilla JS / Web Comp.</span><span class="text-outline">•</span></li>
+</ul>
+</div>
+<!-- Group 2: Backend & Core -->
+<div class="p-space-md rounded-xl bg-surface-container flex flex-col space-y-space-sm border border-outline-variant/30">
+<div class="flex items-center gap-2 text-secondary pb-2 border-b border-outline-variant/20">
+<span class="material-symbols-outlined text-[20px]">database</span>
+<h4 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Backend &amp; Core</h4>
+</div>
+<ul class="space-y-2 font-code-inline text-body-sm text-on-surface-variant">
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Laravel 10 / 11</span><span class="text-primary font-bold">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Filament PHP v3</span><span class="text-primary font-bold">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>PHP 8.3 Modern</span><span class="text-secondary font-bold">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>PostgreSQL / MySQL</span><span class="text-outline">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Redis / Queues</span><span class="text-outline">•</span></li>
+</ul>
+</div>
+<!-- Group 3: DevOps & Tools -->
+<div class="p-space-md rounded-xl bg-surface-container flex flex-col space-y-space-sm border border-outline-variant/30">
+<div class="flex items-center gap-2 text-primary-fixed pb-2 border-b border-outline-variant/20">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+<h4 class="font-headline-sm text-headline-sm font-semibold text-on-surface">DevOps &amp; Infra</h4>
+</div>
+<ul class="space-y-2 font-code-inline text-body-sm text-on-surface-variant">
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Docker &amp; Compose</span><span class="text-primary font-bold">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>GitHub Actions CI/CD</span><span class="text-secondary font-bold">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Linux / VPS Deploy</span><span class="text-outline">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Vite Bundler</span><span class="text-outline">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Nginx / Reverse Proxy</span><span class="text-outline">•</span></li>
+</ul>
+</div>
+<!-- Group 4: Architecture -->
+<div class="p-space-md rounded-xl bg-surface-container flex flex-col space-y-space-sm border border-outline-variant/30">
+<div class="flex items-center gap-2 text-on-surface pb-2 border-b border-outline-variant/20">
+<span class="material-symbols-outlined text-[20px]">schema</span>
+<h4 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Arquitectura</h4>
+</div>
+<ul class="space-y-2 font-code-inline text-body-sm text-on-surface-variant">
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>PWA / Offline-First</span><span class="text-primary font-bold">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>RESTful &amp; JSON APIs</span><span class="text-secondary font-bold">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Modular Monoliths</span><span class="text-outline">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Event-Driven Queues</span><span class="text-outline">•</span></li>
+<li class="flex items-center justify-between p-2 rounded bg-surface-container-low"><span>Micro-Frontends (Islands)</span><span class="text-outline">•</span></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       SECCIÓN: CONTACTO & FORMULARIO
+       ========================================================================= -->
+<section class="w-full max-w-[1200px] mx-auto px-gutter py-space-xl" id="contacto">
+<!-- macOS App Window Envelope for Contact -->
+<div class="rounded-2xl bg-surface-container-low border border-outline-variant/30 window-frame overflow-hidden">
+<!-- macOS Window Titlebar -->
+<div class="px-space-md py-3 bg-surface-container-lowest border-b border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block shadow-sm"></span>
+<span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block shadow-sm"></span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-on-surface font-medium">
+<span class="material-symbols-outlined text-[15px] text-primary">send</span>
+<span>session://contact_form.sh</span>
+</div>
+<div class="flex items-center gap-2 font-code-inline text-label-sm text-outline">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary text-[11px] font-semibold">• ready</span>
+</div>
+</div>
+<div class="p-space-lg lg:p-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-gutter-lg">
+<!-- Left: Pitch & Quick Copy Links (5 cols) -->
+<div class="lg:col-span-5 flex flex-col justify-between space-y-space-md">
+<div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="font-code-inline text-label-sm text-primary">06 //</span>
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Contacto Directo</h2>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface leading-tight mb-space-sm">
+            ¿Tienes un proyecto ambicioso en mente? Hablemos.
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+            Disponible para desarrollos a medida, asesoría de arquitectura o integración como refuerzo de alta capacidad técnica en tu equipo. Respondo habitualmente en menos de 24 horas.
+          </p>
+<!-- Quick Clipboard Copy Widget -->
+<div class="p-space-md rounded-xl bg-surface-container flex flex-col gap-2 border border-outline-variant/30">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">CORREO ELECTRÓNICO DIRECTO</span>
+<div class="flex items-center justify-between gap-2">
+<span class="font-code-inline text-body-md text-on-surface font-semibold truncate" id="copy-email-val">dev@engineer-portfolio.io</span>
+<button class="shrink-0 px-3 py-1.5 rounded-lg bg-surface-container-highest hover:bg-surface-bright text-primary font-label-sm text-label-sm font-semibold transition-all flex items-center gap-1" id="btn-copy-email" onclick="copyEmailToClipboard()">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span id="copy-btn-label">Copiar</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Network Profiles -->
+<div class="pt-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-2">CANALES PROFESIONALES</span>
+<div class="flex items-center gap-space-md">
+<a class="p-3 rounded-lg bg-surface-container hover:bg-surface-bright text-on-surface hover:text-primary transition-all flex items-center gap-2 font-label-md text-label-md border border-outline-variant/30" href="https://github.com" rel="noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+<span>GitHub</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container hover:bg-surface-bright text-on-surface hover:text-secondary transition-all flex items-center gap-2 font-label-md text-label-md border border-outline-variant/30" href="https://linkedin.com" rel="noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">share</span>
+<span>LinkedIn</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Right: Pragmatic Contact Form (7 cols) -->
+<div class="lg:col-span-7">
+<form class="p-space-md lg:p-space-lg rounded-xl bg-surface-container space-y-space-md shadow-lg border border-outline-variant/30" id="portfolio-contact-form" onsubmit="handleContactSubmit(event)">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Name Input -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1" for="contact-name">Nombre o Empresa *</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 font-code-inline text-outline text-label-md">&gt;</span>
+<input class="w-full bg-surface-container-lowest text-on-surface font-code-inline text-body-sm rounded-lg pl-8 pr-3 py-2.5 outline-none focus:bg-surface-container-high transition-colors" id="contact-name" name="name" placeholder="Ada Lovelace / Studio XYZ" required="" type="text"/>
+</div>
+</div>
+<!-- Email Input -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1" for="contact-email">Tu Email *</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 font-code-inline text-outline text-label-md">@</span>
+<input class="w-full bg-surface-container-lowest text-on-surface font-code-inline text-body-sm rounded-lg pl-8 pr-3 py-2.5 outline-none focus:bg-surface-container-high transition-colors" id="contact-email" name="email" placeholder="contacto@empresa.com" required="" type="email"/>
+</div>
+</div>
+</div>
+<!-- Project Type Selector -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1" for="contact-type">Naturaleza del Proyecto</label>
+<select class="w-full bg-surface-container-lowest text-on-surface font-code-inline text-body-sm rounded-lg px-3 py-2.5 outline-none focus:bg-surface-container-high transition-colors" id="contact-type" name="project_type">
+<option value="freelance">Desarrollo Web / Plataforma Freelance</option>
+<option value="contratacion">Contratación / Posición Estratégica</option>
+<option value="consultoria">Auditoría de Arquitectura &amp; Rendimiento</option>
+<option value="open-source">Iniciativa Open Source / Charla</option>
+</select>
+</div>
+<!-- Message Area -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1" for="contact-message">Detalles del Requerimiento *</label>
+<textarea class="w-full bg-surface-container-lowest text-on-surface font-code-inline text-body-sm rounded-lg p-3 outline-none focus:bg-surface-container-high transition-colors" id="contact-message" name="message" placeholder="Cuéntame sobre los objetivos, tiempos previstos y contexto técnico del proyecto..." required="" rows="4"></textarea>
+</div>
+<!-- Transparency notice & Submit -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pt-space-xs">
+<span class="font-code-inline text-label-sm text-outline flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-primary">lock</span>
+<span>Procesado de forma directa sin servidores redundantes (Resend / Formspree).</span>
+</span>
+<button class="inline-flex items-center justify-center gap-2 px-space-lg py-3 rounded-lg bg-primary hover:bg-primary-fixed text-on-primary font-label-md text-label-md font-semibold transition-all duration-200 hover:scale-[1.01] hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] shrink-0" id="form-submit-btn" type="submit">
+<span>Enviar Mensaje</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+<!-- Feedback Alert Banner -->
+<div class="hidden p-3 rounded-lg bg-primary/10 text-primary font-code-inline text-body-sm" id="form-feedback">
+            • Mensaje preparado para despacho. Te responderé con prontitud.
+          </div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       INLINE MICRO-INTERACTIONS & ACCESSIBILITY SCRIPT
+       ========================================================================= -->
+<script>
+    // 1. Interactive 3D Card Tilt for Pawel Szostak style portrait
+    (function initAvatarTilt() {
+      const card = document.getElementById('hero-avatar-card');
+      if (!card) return;
+
+      // Honor prefers-reduced-motion
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced || window.innerWidth < 1024) return;
+
+      const handleMouseMove = (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        // Subtle tilt parameters: max +/- 7 degrees
+        const rotateX = ((y - centerY) / centerY) * -7;
+        const rotateY = ((x - centerX) / centerX) * 7;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+      };
+
+      const handleMouseLeave = () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      };
+
+      card.addEventListener('mousemove', handleMouseMove);
+      card.addEventListener('mouseleave', handleMouseLeave);
+    })();
+
+    // 2. Tech Section View Switcher (3D Globe vs Accessible Grid)
+    function switchTechView(view) {
+      const interactiveBox = document.getElementById('tech-interactive-container');
+      const accessibleBox = document.getElementById('tech-accessible-container');
+      const btnInteractive = document.getElementById('btn-view-interactive');
+      const btnAccessible = document.getElementById('btn-view-accessible');
+
+      if (view === 'interactive') {
+        interactiveBox.classList.remove('hidden');
+        accessibleBox.classList.add('hidden');
+        accessibleBox.classList.remove('grid');
+        btnInteractive.className = 'px-3 py-1.5 rounded-md font-label-sm text-label-sm font-semibold transition-all bg-primary text-on-primary shadow-sm flex items-center gap-1.5';
+        btnAccessible.className = 'px-3 py-1.5 rounded-md font-label-sm text-label-sm font-semibold transition-all text-on-surface-variant hover:text-on-surface flex items-center gap-1.5';
+      } else {
+        interactiveBox.classList.add('hidden');
+        accessibleBox.classList.remove('hidden');
+        accessibleBox.classList.add('grid');
+        btnAccessible.className = 'px-3 py-1.5 rounded-md font-label-sm text-label-sm font-semibold transition-all bg-primary text-on-primary shadow-sm flex items-center gap-1.5';
+        btnInteractive.className = 'px-3 py-1.5 rounded-md font-label-sm text-label-sm font-semibold transition-all text-on-surface-variant hover:text-on-surface flex items-center gap-1.5';
+      }
+    }
+
+    // 3. Fast Clipboard Copy Utility for Email
+    function copyEmailToClipboard() {
+      const emailElem = document.getElementById('copy-email-val');
+      const btnLabel = document.getElementById('copy-btn-label');
+      if (!emailElem) return;
+
+      const email = emailElem.innerText.trim();
+      navigator.clipboard.writeText(email).then(() => {
+        if (btnLabel) {
+          btnLabel.innerText = 'Copiado!';
+          setTimeout(() => {
+            btnLabel.innerText = 'Copiar';
+          }, 2500);
+        }
+      }).catch(() => {
+        if (btnLabel) btnLabel.innerText = 'dev@engineer-portfolio.io';
+      });
+    }
+
+    // 4. Contact Form Handler Visual Feedback
+    function handleContactSubmit(event) {
+      event.preventDefault();
+      const submitBtn = document.getElementById('form-submit-btn');
+      const feedback = document.getElementById('form-feedback');
+      
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span><span>Enviando...</span>';
+      }
+
+      setTimeout(() => {
+        if (feedback) feedback.classList.remove('hidden');
+        if (submitBtn) {
+          submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check</span><span>Recibido</span>';
+          submitBtn.classList.add('bg-primary-container', 'text-on-primary-container');
+        }
+      }, 700);
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest/90 border-t border-outline-variant/30 py-space-xl mt-space-xl"><div class="max-w-[1200px] mx-auto px-gutter flex flex-col gap-space-lg"><div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md pb-space-lg border-b border-outline-variant/20"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-low border border-outline-variant/40"><span class="inline-block w-2 h-2 rounded-full bg-primary"></span><span class="font-label-sm text-label-sm text-on-surface-variant">UTC+1 (Madrid, ES) • Online / Conectado</span></div><div class="flex items-center gap-space-lg"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" href="https://github.com" rel="noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]">terminal</span>GitHub</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" href="https://linkedin.com" rel="noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]">share</span>LinkedIn</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" href="https://x.com" rel="noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]">alternate_email</span>X / Twitter</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" data-path="contacto" href="#contacto"><span class="material-symbols-outlined text-[16px]">mail</span>Email</a></div></div><div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2025 • Construido con Astro &amp; Tailwind CSS — Inspirado en minimalismo técnico.</p><p class="font-label-sm text-label-sm text-outline">PRODUCTION BUILD // V2.4</p></div></div></footer></body></html>

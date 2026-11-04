@@ -1,0 +1,14 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import WindowFrame from './WindowFrame.astro';
+interface Props { data: any }
+const { data } = Astro.props;
+---
+<section id="sobre-mi" class="page-section">
+	<SectionHeading number="01" title={data.sectionTitle} />
+	<WindowFrame filename={data.windowFilename} status={data.windowStatus}>
+		<div class="about-grid"><div><h2>{data.heading}</h2>{data.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}<p class="signature">{data.signature}</p></div>
+			<div class="principles"><h3>{data.principlesTitle}</h3>{data.principles.map((item: any) => <article><h4>{item.title}</h4><p>{item.description}</p></article>)}<aside><strong>{data.outsideTitle}</strong><p>{data.outside}</p></aside></div>
+		</div>
+	</WindowFrame>
+</section>

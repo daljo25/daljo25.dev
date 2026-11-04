@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import ProjectTerminal from './ProjectTerminal.astro';
 interface Props {
   project: any;
   reverse?: boolean;
@@ -14,9 +15,17 @@ const { project, reverse = false } = Astro.props;
       <i></i>
       <i></i>
     </div>
-    <span class="window-filename">{project.path}</span>
+    <span class="window-title">
+      <Icon name="tabler:terminal-2" size={15} />
+      <span class="window-filename">{project.path}</span>
+    </span>
     <span class="window-status">{project.status}</span>
   </div>
+  <ProjectTerminal
+    prompt={project.terminalPrompt}
+    output={project.serverOutput}
+    duration={project.terminalDurationMs ?? 5000}
+  />
   <div class="project-body">
     <div class="project-visual">
       <img src={project.image} alt={project.imageAlt} loading="lazy" />

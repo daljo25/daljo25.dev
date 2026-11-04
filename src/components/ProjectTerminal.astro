@@ -1,0 +1,91 @@
+---
+interface Props {
+  prompt: { user: string; path: string; command: string };
+  output: string[];
+  duration: number;
+}
+
+const { prompt, output, duration } = Astro.props;
+---
+
+<div class="project-terminal" data-duration={duration}>
+  <div class="project-command">
+    <span class="project-prompt-user">{prompt.user}</span>:<span class="project-prompt-path">{prompt.path}</span>
+    <code>{prompt.command}</code>
+    <i class="project-command-cursor" aria-hidden="true"></i>
+  </div>
+  <ul class="project-output" aria-label="Salida del comando">
+    {output.map((line) => <li>{line}</li>)}
+  </ul>
+</div>
+
+<script>
+  const terminals = document.querySelectorAll<HTMLElement>('.project-terminal');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+
+        const terminal = entry.target as HTMLElement;
+        if (terminal.classList.contains('is-booted')) continue;
+
+        terminal.classList.add('is-booting');
+        const projectCard = terminal.closest<HTMLElement>('.project-card');
+        const projectBody = projectCard?.querySelector<HTMLElement>('.project-body');
+        projectCard?.classList.add('is-running');
+        const command = terminal.querySelector<HTMLElement>('.project-command code');
+        const cursor = terminal.querySelector<HTMLElement>('.project-command-cursor');
+        const outputLines = [...terminal.querySelectorAll<HTMLElement>('.project-output li')];
+        const fullCommand = command?.dataset.command ?? command?.textContent ?? '';
+
+        if (!command) continue;
+        command.dataset.command = fullCommand;
+        command.textContent = '';
+        outputLines.forEach((line) => line.hidden = true);
+
+        const startTime = performance.now();
+        const typingDuration = 750;
+        const minimumDuration = typingDuration + outputLines.length * 280 + 300;
+        const terminalDuration = Math.max(Number(terminal.dataset.duration) || 5000, minimumDuration);
+
+        const typeCommand = (now: number) => {
+          const progress = Math.min((now - startTime) / typingDuration, 1);
+          command.textContent = fullCommand.slice(0, Math.floor(progress * fullCommand.length));
+
+          if (progress < 1) {
+            requestAnimationFrame(typeCommand);
+            return;
+          }
+
+          outputLines.forEach((line, index) => {
+            window.setTimeout(() => {
+              line.hidden = false;
+              line.classList.add('animate-fade-in', 'animate-duration-300');
+            }, index * 280);
+          });
+
+          window.setTimeout(() => {
+            terminal.classList.remove('is-booting');
+            terminal.classList.add('is-booted');
+            cursor?.remove();
+          }, outputLines.length * 280 + 300);
+        };
+
+        requestAnimationFrame(typeCommand);
+        window.setTimeout(() => {
+          terminal.classList.add('animate-fade-out', 'animate-duration-300');
+          window.setTimeout(() => {
+            terminal.hidden = true;
+            projectCard?.classList.remove('is-running');
+            projectBody?.classList.add('animate-fade-in', 'animate-duration-700');
+          }, 300);
+        }, terminalDuration);
+        observer.unobserve(terminal);
+      }
+    }, { threshold: 0.35 });
+
+    terminals.forEach((terminal) => observer.observe(terminal));
+  }
+</script>

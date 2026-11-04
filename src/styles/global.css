@@ -270,6 +270,31 @@ p {
 }
 .window-title > [data-icon] { flex: none; }
 .window-title .window-filename { color: var(--color-text-muted); }
+.project-terminal {
+  overflow: hidden;
+  border-bottom: 1px solid rgb(60 74 66 / 20%);
+  background: #0c0e12;
+  color: var(--color-text-subtle);
+  font-family: var(--font-mono);
+}
+.project-command {
+  display: flex;
+  min-height: 2rem;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem 0.2rem;
+}
+.project-prompt-user { color: var(--color-primary); font: 0.62rem var(--font-mono); white-space: nowrap; }
+.project-prompt-path { color: var(--color-secondary); font: 0.62rem var(--font-mono); white-space: nowrap; }
+.project-command code { overflow: hidden; color: var(--color-text); font: 0.62rem var(--font-mono); text-overflow: ellipsis; white-space: nowrap; }
+.project-command-cursor { width: 0.4rem; height: 0.85rem; flex: none; background: var(--color-primary); animation: blink 1s steps(2) infinite; }
+.project-output { display: grid; gap: 0.25rem; margin: 0; padding: 0.15rem 1rem 0.7rem; color: var(--color-text-subtle); font: 0.62rem/1.5 var(--font-mono); list-style: none; }
+.project-output li:first-child { color: var(--color-primary); }
+.project-output li[hidden] { display: none; }
+.project-terminal.is-booting .project-output { min-height: 1.5rem; }
+.project-terminal.is-booted .project-command-cursor { display: none; }
+.project-terminal[hidden] { display: none; }
+.project-card.is-running .project-body { display: none; }
 .window-status {
   flex: none;
   color: var(--color-primary);

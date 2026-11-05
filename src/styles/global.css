@@ -805,6 +805,33 @@ p {
   color: var(--color-text-muted);
   line-height: 1.7;
 }
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.9rem;
+}
+.contact-availability {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid rgb(16 185 129 / 24%);
+  border-radius: 6px;
+  background: rgb(16 185 129 / 7%);
+  color: var(--color-primary);
+}
+.contact-availability > [data-icon] { flex: none; }
+.contact-availability div { display: grid; gap: 0.25rem; }
+.contact-availability small {
+  color: var(--color-text-subtle);
+  font: 0.58rem var(--font-mono);
+  letter-spacing: 0.08em;
+}
+.contact-availability strong {
+  color: var(--color-text);
+  font: 600 0.75rem var(--font-mono);
+}
 .contact-email {
   display: grid;
   gap: 0.5rem;
@@ -819,9 +846,46 @@ p {
   font: 0.6rem var(--font-mono);
 }
 .contact-email a {
+  min-width: 0;
+  overflow-wrap: anywhere;
   color: var(--color-primary);
   font: 600 0.9rem var(--font-mono);
 }
+.contact-email-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.contact-copy-button {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  background: var(--color-surface-high);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.contact-copy-button:hover,
+.contact-copy-button:focus-visible { border-color: var(--color-primary); color: var(--color-primary); }
+.contact-copy-button:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.contact-copy-success { display: none; }
+.contact-copy-button.is-copied { border-color: var(--color-primary); color: var(--color-primary); }
+.contact-copy-button.is-copied .contact-copy-icon:not(.contact-copy-success) { display: none; }
+.contact-copy-button.is-copied .contact-copy-success { display: inline-block; }
+.contact-response {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-subtle);
+  font: 0.68rem/1.5 var(--font-mono);
+}
+.contact-response > [data-icon] { flex: none; color: var(--color-secondary); }
 .contact-socials {
   display: flex;
   gap: 0.6rem;

@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import SectionHeading from './SectionHeading.astro';
 import WindowFrame from './WindowFrame.astro';
 interface Props {
   data: any;
@@ -8,29 +9,57 @@ const { data } = Astro.props;
 ---
 
 <section id="contacto" class="page-section">
+  <SectionHeading
+    number="06"
+    title={data.sectionTitle}
+    heading={data.heading}
+    summary={data.description}
+  />
   <WindowFrame filename={data.windowFilename} status={data.windowStatus}>
     <div class="contact-grid">
-      <div>
-        <p class="eyebrow">06 // {data.sectionTitle}</p>
-        <h2>{data.heading}</h2>
-        <p>{data.description}</p>
-        <p class="contact-email">
+      <div class="contact-details">
+        <div class="contact-availability">
+          <Icon name="tabler:circle-filled" size={10} />
+          <div>
+            <small>{data.availabilityLabel}</small>
+            <strong>{data.availabilityStatus}</strong>
+          </div>
+        </div>
+        <div class="contact-email">
           <small>{data.emailLabel}</small>
-          <a href={`mailto:${data.email}`}>{data.email}</a>
+          <div class="contact-email-row">
+            <a href={`mailto:${data.email}`}>{data.email}</a>
+            <button
+              class="contact-copy-button"
+              type="button"
+              data-copy-email={data.email}
+              data-copy-label={data.copyEmailLabel}
+              data-copied-label={data.emailCopiedLabel}
+              aria-label={data.copyEmailLabel}
+              title={data.copyEmailLabel}
+            >
+              <Icon class="contact-copy-icon" name="tabler:copy" size={16} />
+              <Icon class="contact-copy-icon contact-copy-success" name="tabler:check" size={16} />
+            </button>
+          </div>
+        </div>
+        <p class="contact-response">
+          <Icon name="tabler:clock-hour-4" size={16} />
+          <span>{data.responseTime}</span>
         </p>
         <nav class="contact-socials">
           {data.socials.map((item: any) => (
             <a href={item.href} target="_blank" rel="noreferrer">
               {item.label}{' '}
               <Icon
-                name={item.label === 'GitHub' ? 'tabler:brand-github' : 'tabler:brand-linkedin'}
+                name={item.label === 'GitHub' ? 'tabler:brand-github' : 'tabler:brand-x'}
                 size={16}
               />
             </a>
           ))}
         </nav>
       </div>
-      <form action={data.formAction} method="POST">
+      <form class="contact-form" action={data.formAction} method="POST">
         <label>
           {data.nameLabel}
           <input name="name" required placeholder={data.namePlaceholder} />
@@ -63,3 +92,62 @@ const { data } = Astro.props;
     </div>
   </WindowFrame>
 </section>
+
+<script>
+  const contactGrid = document.querySelector<HTMLElement>('.contact-grid');
+  const contactBlocks = contactGrid?.querySelectorAll<HTMLElement>('.contact-details, .contact-form');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (contactGrid && contactBlocks && !prefersReducedMotion && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+
+      contactBlocks.forEach((block, index) => {
+        block.classList.add('animate-fade-in-up', 'animate-duration-500');
+        block.style.animationDelay = `${index * 120}ms`;
+      });
+      observer.disconnect();
+    }, { threshold: 0.15 });
+
+    observer.observe(contactGrid);
+  }
+</script>
+
+<script>
+  const copyEmailButtons = document.querySelectorAll<HTMLButtonElement>('.contact-copy-button');
+
+  copyEmailButtons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const email = button.dataset.copyEmail;
+      if (!email) return;
+
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          const input = document.createElement('textarea');
+          input.value = email;
+          input.setAttribute('readonly', '');
+          input.style.position = 'fixed';
+          input.style.opacity = '0';
+          document.body.append(input);
+          input.select();
+          const copied = document.execCommand('copy');
+          input.remove();
+          if (!copied) throw new Error('Clipboard copy failed');
+        }
+
+        button.classList.add('is-copied');
+        button.setAttribute('aria-label', button.dataset.copiedLabel ?? '');
+        button.setAttribute('title', button.dataset.copiedLabel ?? '');
+        window.setTimeout(() => {
+          button.classList.remove('is-copied');
+          button.setAttribute('aria-label', button.dataset.copyLabel ?? '');
+          button.setAttribute('title', button.dataset.copyLabel ?? '');
+        }, 1600);
+      } catch (error) {
+        console.error('No se pudo copiar el correo:', error);
+      }
+    });
+  });
+</script>

@@ -2,15 +2,20 @@
 title: Contacto Directo
 order: 6
 sectionTitle: Contacto Directo
-windowFilename: session://contact.sh
-windowStatus: READY
+windowFilename: workspace://scripts/contact.sh
+windowStatus: RUN
 heading: ¿Tienes un proyecto ambicioso en mente? Hablemos.
-description: Disponible para desarrollos a medida, asesoría de arquitectura o integración como refuerzo técnico en tu equipo. Respondo habitualmente en menos de 24 horas.
-email: dev@engineer-portfolio.io
+description: Disponible para desarrollos a medida, asesoría de arquitectura o integración como refuerzo técnico en tu equipo.
+email: contact@daljo25.dev
 emailLabel: CORREO ELECTRÓNICO DIRECTO
+copyEmailLabel: Copiar correo electrónico
+emailCopiedLabel: Correo copiado
+availabilityLabel: DISPONIBILIDAD
+availabilityStatus: Disponible para proyectos
+responseTime: Respondo habitualmente en menos de 24 horas
 socials:
-  [{ label: GitHub, href: 'https://github.com' }, { label: LinkedIn, href: 'https://linkedin.com' }]
-formAction: mailto:dev@engineer-portfolio.io
+  [{ label: GitHub, href: 'https://github.com/daljo25' }, { label: X.com, href: 'https://x.com/daljo25' }]
+formAction: mailto:contact@daljo25.dev
 nameLabel: Nombre o Empresa *
 namePlaceholder: Ada Lovelace / Studio XYZ
 emailFieldLabel: Tu Email *

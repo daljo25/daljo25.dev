@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 const sections = defineCollection({
@@ -9,7 +10,7 @@ const sections = defineCollection({
       description: z.string().default(''),
       order: z.number().optional(),
     })
-    .passthrough(),
+    .loose(),
 });
 
 const projects = defineCollection({
@@ -20,7 +21,7 @@ const projects = defineCollection({
       description: z.string().default(''),
       order: z.number().optional(),
     })
-    .passthrough(),
+    .loose(),
 });
 
 const openSource = defineCollection({
@@ -31,7 +32,7 @@ const openSource = defineCollection({
       description: z.string().default(''),
       order: z.number().optional(),
     })
-    .passthrough(),
+    .loose(),
 });
 
 const experiments = defineCollection({
@@ -42,7 +43,7 @@ const experiments = defineCollection({
       description: z.string().default(''),
       order: z.number().optional(),
     })
-    .passthrough(),
+    .loose(),
 });
 
 export const collections = { sections, projects, openSource, experiments };

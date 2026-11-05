@@ -125,20 +125,7 @@ const socialIcons: Record<string, string> = {
       if (!email) return;
 
       try {
-        if (navigator.clipboard?.writeText) {
-          await navigator.clipboard.writeText(email);
-        } else {
-          const input = document.createElement('textarea');
-          input.value = email;
-          input.setAttribute('readonly', '');
-          input.style.position = 'fixed';
-          input.style.opacity = '0';
-          document.body.append(input);
-          input.select();
-          const copied = document.execCommand('copy');
-          input.remove();
-          if (!copied) throw new Error('Clipboard copy failed');
-        }
+        await navigator.clipboard.writeText(email);
 
         button.classList.add('is-copied');
         button.setAttribute('aria-label', button.dataset.copiedLabel ?? '');

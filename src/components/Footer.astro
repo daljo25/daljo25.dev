@@ -7,6 +7,11 @@ interface Props {
   build: string;
 }
 const { status, socials, copyright, build } = Astro.props;
+const socialIcons: Record<string, string> = {
+  GitHub: 'tabler:brand-github',
+  'X / Twitter': 'tabler:brand-x',
+  Discord: 'tabler:brand-discord',
+};
 ---
 
 <footer class="site-footer">
@@ -18,16 +23,7 @@ const { status, socials, copyright, build } = Astro.props;
     <nav aria-label="Redes sociales">
       {socials.map((social) => (
         <a href={social.href} target="_blank" rel="noreferrer">
-          <Icon
-            name={
-              social.label === 'GitHub'
-                ? 'tabler:brand-github'
-                : social.label === 'LinkedIn'
-                  ? 'tabler:brand-linkedin'
-                  : 'tabler:brand-x'
-            }
-            size={16}
-          />
+          <Icon name={socialIcons[social.label] ?? 'tabler:link'} size={16} />
           {social.label}
         </a>
       ))}

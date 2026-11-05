@@ -3,8 +3,9 @@ import DevFoto from './DevFoto.astro';
 import { Icon } from 'astro-icon/components';
 interface Props {
   data: any;
+  socials: { label: string; href: string }[];
 }
-const { data } = Astro.props;
+const { data, socials } = Astro.props;
 ---
 
 <section id="inicio" class="page-section hero-section">
@@ -27,7 +28,7 @@ const { data } = Astro.props;
     </div>
     <div class="hero-socials">
       <span>{data.socialLabel}</span>
-      {data.socials.map((social: any) => (
+      {socials.map((social) => (
         <a href={social.href} target="_blank" rel="noreferrer">
           {social.label}
         </a>

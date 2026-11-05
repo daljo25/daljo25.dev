@@ -5,9 +5,8 @@ interface Props {
   brand: string;
   availability: string;
   navLabel: string;
-  cta: string;
 }
-const { links, brand, availability, navLabel, cta } = Astro.props;
+const { links, brand, availability, navLabel } = Astro.props;
 ---
 
 <header class="site-header">
@@ -20,7 +19,16 @@ const { links, brand, availability, navLabel, cta } = Astro.props;
         <span>{availability}</span>
       </div>
     </div>
-    <nav class="header-nav" aria-label={navLabel}>
+    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="header-nav">
+      <Icon name="tabler:terminal-2" size={16} />
+      <span>MENU</span>
+      <i aria-hidden="true"></i>
+    </button>
+    <nav class="header-nav" id="header-nav" aria-label={navLabel}>
+      <div class="mobile-terminal-bar" aria-hidden="true">
+        <span class="terminal-circles"><i></i><i></i><i></i></span>
+        <span>daljo25@portfolio:~</span>
+      </div>
       {links.map((link: any) => (
         <a
           href={link.href}
@@ -31,14 +39,6 @@ const { links, brand, availability, navLabel, cta } = Astro.props;
         </a>
       ))}
     </nav>
-    <div class="header-actions">
-      <a class="header-cta" href="#contacto">
-        {cta}
-      </a>
-      <span class="header-avatar" aria-hidden="true">
-        <Icon name="tabler:user" size={18} />
-      </span>
-    </div>
   </div>
 </header>
 
@@ -64,4 +64,23 @@ const { links, brand, availability, navLabel, cta } = Astro.props;
   );
 
   sections.forEach((section) => observer.observe(section));
+
+  const menuToggle = document.querySelector<HTMLButtonElement>('.mobile-menu-toggle');
+  const headerNav = document.querySelector<HTMLElement>('.header-nav');
+
+  const closeMenu = () => {
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    headerNav?.classList.remove('is-open');
+  };
+
+  menuToggle?.addEventListener('click', () => {
+    const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!isOpen));
+    headerNav?.classList.toggle('is-open', !isOpen);
+  });
+
+  headerNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
 </script>

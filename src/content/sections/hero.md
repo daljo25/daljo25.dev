@@ -5,16 +5,11 @@ order: 0
 role: Desarrollador
 availability: Disponible para proyectos freelance & alianzas estratégicas
 highlight: Full Stack
-titleEnd: enfocado en rendimiento, interfaces precisas y herramientas robustas.
-pitch: 'Construyendo con <strong>Astro, Tailwind CSS, Laravel & Filament</strong>. Software limpio, arquitectura predecible y detalle artesanal enfocado en resolución pragmática de producto.'
+titleEnd: especializado en Laravel, Filament y productos SaaS.
+pitch: 'Construyo <strong>productos digitales, herramientas para desarrolladores y soluciones SaaS</strong> con Laravel, Filament, PHP y tecnologías modernas. Me enfoco en crear software modular, mantenible y escalable, desde la arquitectura hasta el despliegue.'
 primaryCta: Ver proyectos seleccionados
 secondaryCta: Iniciar contacto
 socialLabel: Ecosistema
-socials:
-  - label: github.com/daljo25
-    href: https://github.com/daljo25
-  - label: x.com/daljo25
-    href: https://x.com/daljo25
 photo:
   image: /daljo25.webp
   alt: Retrato editorial de un desarrollador en un estudio oscuro.

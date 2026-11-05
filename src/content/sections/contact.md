@@ -13,8 +13,6 @@ emailCopiedLabel: Correo copiado
 availabilityLabel: DISPONIBILIDAD
 availabilityStatus: Disponible para proyectos
 responseTime: Respondo habitualmente en menos de 24 horas
-socials:
-  [{ label: GitHub, href: 'https://github.com/daljo25' }, { label: X.com, href: 'https://x.com/daljo25' }]
 formAction: mailto:contact@daljo25.dev
 nameLabel: Nombre o Empresa *
 namePlaceholder: Ada Lovelace / Studio XYZ

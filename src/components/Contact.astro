@@ -4,8 +4,14 @@ import SectionHeading from './SectionHeading.astro';
 import WindowFrame from './WindowFrame.astro';
 interface Props {
   data: any;
+  socials: { label: string; href: string }[];
 }
-const { data } = Astro.props;
+const { data, socials } = Astro.props;
+const socialIcons: Record<string, string> = {
+  GitHub: 'tabler:brand-github',
+  'X / Twitter': 'tabler:brand-x',
+  Discord: 'tabler:brand-discord',
+};
 ---
 
 <section id="contacto" class="page-section">
@@ -48,13 +54,10 @@ const { data } = Astro.props;
           <span>{data.responseTime}</span>
         </p>
         <nav class="contact-socials">
-          {data.socials.map((item: any) => (
+          {socials.map((item) => (
             <a href={item.href} target="_blank" rel="noreferrer">
               {item.label}{' '}
-              <Icon
-                name={item.label === 'GitHub' ? 'tabler:brand-github' : 'tabler:brand-x'}
-                size={16}
-              />
+              <Icon name={socialIcons[item.label] ?? 'tabler:link'} size={16} />
             </a>
           ))}
         </nav>

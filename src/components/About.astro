@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import SectionHeading from './SectionHeading.astro';
 import WindowFrame from './WindowFrame.astro';
 interface Props {
@@ -45,12 +46,18 @@ const markdownSource = [
           <h3>{data.principlesTitle}</h3>
           {data.principles.map((item: any) => (
             <article>
-              <h4>{item.title}</h4>
+              <div class="principle-heading">
+                {item.icon && <Icon name={item.icon} size={19} />}
+                <h4>{item.title}</h4>
+              </div>
               <p>{item.description}</p>
             </article>
           ))}
           <aside>
-            <strong>{data.outsideTitle}</strong>
+            <div class="principle-heading">
+              {data.icon && <Icon name={data.icon} size={19} />}
+              <strong>{data.outsideTitle}</strong>
+            </div>
             <p>{data.outside}</p>
           </aside>
         </div>

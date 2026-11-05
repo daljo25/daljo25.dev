@@ -569,6 +569,45 @@ p {
   font-size: 0.9rem;
   line-height: 1.7;
 }
+.copy-command {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.7rem 0.65rem 0.85rem;
+  border: 1px solid rgb(60 74 66 / 35%);
+  border-radius: 5px;
+  background: #0c0e12;
+}
+.copy-command code {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--color-text-muted);
+  font: 0.7rem/1.5 var(--font-mono);
+}
+.copy-command-button {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  background: var(--color-surface-high);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+.copy-command-button:hover,
+.copy-command-button:focus-visible { border-color: var(--color-primary); color: var(--color-primary); }
+.copy-command-button:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.copy-success-icon { display: none; }
+.copy-command-button.is-copied { border-color: var(--color-primary); color: var(--color-primary); }
+.copy-command-button.is-copied .copy-command-icon:not(.copy-success-icon) { display: none; }
+.copy-command-button.is-copied .copy-success-icon { display: inline-block; }
 .project-copy ul {
   display: grid;
   gap: 0.5rem;
@@ -605,6 +644,7 @@ p {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
 }
+.opensource-card.is-pending { opacity: 0; }
 .utility-content {
   display: flex;
   height: calc(100% - 2.7rem);

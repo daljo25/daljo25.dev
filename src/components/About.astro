@@ -24,11 +24,15 @@ const markdownSource = [
   <WindowFrame
     filename={data.windowFilename}
     status={data.windowStatus}
-    icon="tabler:terminal-2"
+    icon="tabler:folder-open"
     prompt={data.terminalPrompt}
   >
     <div class="about-animation" data-typing-duration={data.typingDurationMs ?? 2500}>
-      <pre class="about-source" aria-hidden="true" data-markdown={markdownSource}><span></span><i></i></pre>
+      <pre
+        class="about-source"
+        aria-hidden="true"
+        data-markdown={markdownSource}
+      ><span></span><i></i></pre>
       <div class="about-grid">
         <div class="about-copy">
           <h2>{data.heading}</h2>
@@ -65,31 +69,34 @@ const markdownSource = [
 
   if (aboutAnimation && markdown && typedText && renderedCopy && source && !reducedMotion) {
     let hasPlayed = false;
-    const observer = new IntersectionObserver((entries) => {
-      if (hasPlayed || !entries.some((entry) => entry.isIntersecting)) return;
-      hasPlayed = true;
-      aboutAnimation.classList.add('is-typing');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (hasPlayed || !entries.some((entry) => entry.isIntersecting)) return;
+        hasPlayed = true;
+        aboutAnimation.classList.add('is-typing');
 
-      const duration = Number(aboutAnimation.dataset.typingDuration) || 2500;
-      const startedAt = performance.now();
+        const duration = Number(aboutAnimation.dataset.typingDuration) || 2500;
+        const startedAt = performance.now();
 
-      const type = (now: number) => {
-        const progress = Math.min((now - startedAt) / duration, 1);
-        const characterCount = Math.floor(progress * source.length);
-        typedText.textContent = source.slice(0, characterCount);
+        const type = (now: number) => {
+          const progress = Math.min((now - startedAt) / duration, 1);
+          const characterCount = Math.floor(progress * source.length);
+          typedText.textContent = source.slice(0, characterCount);
 
-        if (progress < 1) {
-          requestAnimationFrame(type);
-          return;
-        }
+          if (progress < 1) {
+            requestAnimationFrame(type);
+            return;
+          }
 
-        aboutAnimation.classList.remove('is-typing');
-        renderedCopy.classList.add('animate-fade-in', 'animate-duration-300');
-        observer.disconnect();
-      };
+          aboutAnimation.classList.remove('is-typing');
+          renderedCopy.classList.add('animate-fade-in', 'animate-duration-300');
+          observer.disconnect();
+        };
 
-      requestAnimationFrame(type);
-    }, { threshold: 0.2 });
+        requestAnimationFrame(type);
+      },
+      { threshold: 0.2 },
+    );
 
     observer.observe(aboutAnimation);
   }

@@ -12,19 +12,39 @@ const orderedItems = [...items].sort((a, b) => (a.data.order ?? 0) - (b.data.ord
 <section id="open-source" class="page-section">
   <SectionHeading number="03" title={data.sectionTitle} heading={data.heading} />
   <div class="utility-grid">
-    {orderedItems.map(({ data: item }) => (
-      <article class="utility-card">
+    {orderedItems.map(({ data: item }, index) => (
+      <article
+        class="utility-card opensource-card"
+        style={`--reveal-delay: ${index * 120}ms`}
+      >
         <div class="window-bar">
           <div class="window-dots">
             <i></i>
             <i></i>
             <i></i>
           </div>
-          <span class="window-filename">{item.path}</span>
+          <span class="window-title">
+            <Icon name="tabler:folder-open" size={15} />
+            <span class="window-filename">{item.path}</span>
+          </span>
           <span class="window-status">{item.version}</span>
         </div>
         <div class="utility-content">
-          <p class="eyebrow">$ {item.command}</p>
+          <div class="copy-command">
+            <code>{item.command}</code>
+            <button
+              class="copy-command-button"
+              type="button"
+              data-copy-command={item.command}
+              data-copy-label={data.copyLabel}
+              data-copied-label={data.copiedLabel}
+              aria-label={data.copyLabel}
+              title={data.copyLabel}
+            >
+              <Icon class="copy-command-icon" name="tabler:copy" size={17} />
+              <Icon class="copy-command-icon copy-success-icon" name="tabler:check" size={17} />
+            </button>
+          </div>
           <img src={item.image} alt={item.imageAlt} loading="lazy" />
           <h3>{item.name}</h3>
           <p>{item.description}</p>
@@ -45,3 +65,66 @@ const orderedItems = [...items].sort((a, b) => (a.data.order ?? 0) - (b.data.ord
     ))}
   </div>
 </section>
+
+<script>
+  const cards = document.querySelectorAll<HTMLElement>('.opensource-card');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+
+        const card = entry.target as HTMLElement;
+        card.classList.remove('is-pending');
+        card.classList.add('animate-fade-in-up', 'animate-duration-500');
+        card.style.animationDelay = 'var(--reveal-delay)';
+        observer.unobserve(card);
+      }
+    }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+
+    cards.forEach((card) => {
+      card.classList.add('is-pending');
+      observer.observe(card);
+    });
+  }
+</script>
+
+<script>
+  const copyButtons = document.querySelectorAll<HTMLButtonElement>('.copy-command-button');
+
+  copyButtons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const command = button.dataset.copyCommand;
+      if (!command) return;
+
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(command);
+        } else {
+          const input = document.createElement('textarea');
+          input.value = command;
+          input.setAttribute('readonly', '');
+          input.style.position = 'fixed';
+          input.style.opacity = '0';
+          document.body.append(input);
+          input.select();
+          const copied = document.execCommand('copy');
+          input.remove();
+          if (!copied) throw new Error('Clipboard copy failed');
+        }
+
+        button.classList.add('is-copied');
+        button.setAttribute('aria-label', button.dataset.copiedLabel ?? '');
+        button.setAttribute('title', button.dataset.copiedLabel ?? '');
+        window.setTimeout(() => {
+          button.classList.remove('is-copied');
+          button.setAttribute('aria-label', button.dataset.copyLabel ?? '');
+          button.setAttribute('title', button.dataset.copyLabel ?? '');
+        }, 1600);
+      } catch (error) {
+        console.error('No se pudo copiar el comando:', error);
+      }
+    });
+  });
+</script>

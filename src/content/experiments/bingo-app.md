@@ -1,10 +1,10 @@
 ---
 title: Bingo App
-description: Creado para jugar en familia y amigos, con generador de cartones interactivo y locutor de números.
+description: Creado para jugar en familia y amigos.
 order: 1
 name: Bingo App
 category: EN FAMILIA // OCIO
-stack: Web Components + IndexedDB + Audio API
-href: '#contacto'
-linkLabel: Probar simulador
+stack: Nextjs
+href: 'https://bingo-daljo.netlify.app/'
+linkLabel: Jugar Bingo
 ---

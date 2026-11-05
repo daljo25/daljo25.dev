@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import SectionHeading from './SectionHeading.astro';
+import WindowFrame from './WindowFrame.astro';
 interface Props {
   data: any;
   items: any[];
@@ -10,13 +11,17 @@ const orderedItems = [...items].sort((a, b) => (a.data.order ?? 0) - (b.data.ord
 ---
 
 <section id="experimentos" class="page-section">
-  <div class="experiment-panel">
-    <SectionHeading
-      number="04"
-      title={data.sectionTitle}
-      heading={data.heading}
-      summary={data.description}
-    />
+  <SectionHeading
+    number="04"
+    title={data.sectionTitle}
+    heading={data.heading}
+    summary={data.description}
+  />
+  <WindowFrame
+    filename={data.windowFilename}
+    status={data.windowStatus}
+    icon="tabler:folder-open"
+  >
     <div class="experiment-grid">
       {orderedItems.map(({ data: item }) => (
         <article>
@@ -30,5 +35,5 @@ const orderedItems = [...items].sort((a, b) => (a.data.order ?? 0) - (b.data.ord
         </article>
       ))}
     </div>
-  </div>
+  </WindowFrame>
 </section>

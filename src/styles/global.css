@@ -209,8 +209,7 @@ p {
 .dev-photo-card,
 .window-frame,
 .project-card,
-.utility-card,
-.experiment-panel {
+.utility-card {
   overflow: hidden;
   border: 1px solid rgb(60 74 66 / 50%);
   border-radius: var(--radius-card);
@@ -692,12 +691,6 @@ p {
 .utility-footer a {
   color: var(--color-primary);
 }
-.experiment-panel {
-  padding: clamp(1rem, 3vw, 2rem);
-}
-.experiment-panel .section-heading {
-  margin-bottom: 1.2rem;
-}
 .experiment-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -708,6 +701,16 @@ p {
   border: 1px solid rgb(60 74 66 / 50%);
   border-radius: 7px;
   background: var(--color-surface-raised);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+.experiment-grid article:hover,
+.experiment-grid article:focus-within {
+  transform: translateY(-2px);
+  border-color: var(--color-primary);
+  background: var(--color-surface-high);
 }
 .experiment-grid h3 {
   margin: 0.6rem 0;
@@ -955,6 +958,11 @@ p {
   .site-footer {
     padding-inline: 1rem;
   }
+}
+@media (prefers-reduced-motion: reduce) {
+  .experiment-grid article { transition: none; }
+  .experiment-grid article:hover,
+  .experiment-grid article:focus-within { transform: none; }
 }
 
 /* Header — matches the fixed, compact navigation from the Stitch reference. */

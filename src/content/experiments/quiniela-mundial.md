@@ -4,7 +4,7 @@ description: App creada en un par de días para competir con pronósticos del to
 order: 2
 name: Quiniela del Mundial
 category: AMIGOS // PORRA
-stack: Astro + NanoStores + Workbox + sincronización local
-href: '#contacto'
-linkLabel: Examinar arquitectura
+stack: NextJS, Supabase, Polimarket API
+href: 'https://github.com/daljo25/quiniela-mundial-2026'
+linkLabel: Visitar repositorio
 ---

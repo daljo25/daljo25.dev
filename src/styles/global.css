@@ -311,8 +311,8 @@ p {
   font: 0.65rem var(--font-mono);
 }
 .terminal-prompt > span:first-child { color: var(--color-primary); font-weight: 700; }
-.terminal-prompt > span:nth-child(2) { color: var(--color-secondary); }
-.terminal-prompt strong { color: var(--color-text); font-weight: 400; }
+.terminal-prompt > span:nth-child(2) { min-width: 0; overflow: hidden; color: var(--color-secondary); text-overflow: ellipsis; white-space: nowrap; }
+.terminal-prompt strong { flex: none; color: var(--color-text); font-weight: 600; }
 .terminal-prompt i { width: 0.45rem; height: 0.9rem; margin-left: 0.15rem; background: var(--color-primary); animation: blink 1s steps(2) infinite; }
 .portrait {
   position: relative;
@@ -732,36 +732,64 @@ p {
 }
 .skill-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
 }
-.skill-grid article {
+.skill-folder {
+  min-width: 0;
   padding: 1rem;
   border: 1px solid rgb(60 74 66 / 45%);
   border-radius: 6px;
   background: var(--color-surface-raised);
 }
-.skill-grid h3 {
-  padding-bottom: 0.7rem;
-  border-bottom: 1px solid var(--color-line);
-  font-size: 1rem;
-}
-.skill-grid ul {
-  display: grid;
-  gap: 0.5rem;
-  padding: 0.8rem 0 0;
-  list-style: none;
-}
-.skill-grid li {
+.skill-folder.is-pending { opacity: 0; }
+.skill-folder-header {
   display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-  color: var(--color-text-muted);
-  font: 0.65rem/1.5 var(--font-mono);
-}
-.skill-grid li span {
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-line);
   color: var(--color-primary);
 }
+.skill-folder-header > [data-icon] { flex: none; margin-top: 0.1rem; }
+.skill-folder-header div { min-width: 0; }
+.skill-folder-header h3 {
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.skill-folder-header span {
+  display: block;
+  overflow: hidden;
+  margin-top: 0.25rem;
+  color: var(--color-text-subtle);
+  font: 0.58rem var(--font-mono);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.skill-folder ul {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0.75rem 0 0;
+  list-style: none;
+}
+.skill-folder li {
+  display: flex;
+  min-height: 2rem;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgb(60 74 66 / 25%);
+  border-radius: 4px;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font: 0.68rem/1.4 var(--font-mono);
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+.skill-folder li > [data-icon] { flex: none; color: var(--color-secondary); }
+.skill-folder li:hover { border-color: rgb(78 222 163 / 40%); background: var(--color-surface-high); }
+.skill-folder li:hover > [data-icon] { color: var(--color-primary); }
 .contact-grid {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
@@ -892,7 +920,7 @@ p {
     gap: 2rem;
   }
   .skill-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 }
 @media (max-width: 680px) {
@@ -963,6 +991,7 @@ p {
   .experiment-grid article { transition: none; }
   .experiment-grid article:hover,
   .experiment-grid article:focus-within { transform: none; }
+  .skill-folder li { transition: none; }
 }
 
 /* Header — matches the fixed, compact navigation from the Stitch reference. */

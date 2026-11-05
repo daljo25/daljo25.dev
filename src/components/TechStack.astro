@@ -6,29 +6,106 @@ interface Props {
   data: any;
 }
 const { data } = Astro.props;
+const skillIcons: Record<string, string> = {
+  TypeScript: 'tabler:brand-typescript',
+  JavaScript: 'tabler:brand-javascript',
+  'React / Next.js': 'tabler:brand-nextjs',
+  'Tailwind CSS': 'tabler:brand-tailwind',
+  'HTML / CSS': 'tabler:brand-html5',
+  Blade: 'tabler:brand-laravel',
+  Livewire: 'tabler:brand-livewire',
+  Astro: 'tabler:brand-astro',
+  'PHP 8.x': 'tabler:brand-php',
+  Laravel: 'tabler:brand-laravel',
+  'Filament PHP': 'tabler:bulb',
+  Go: 'tabler:brand-golang',
+  'Node.js': 'tabler:brand-nodejs',
+  'RESTful APIs': 'tabler:api',
+  Composer: 'tabler:package',
+  'CLI / TUI Development': 'tabler:terminal-2',
+  PostgreSQL: 'tabler:database',
+  MySQL: 'tabler:brand-mysql',
+  Redis: 'tabler:database',
+  Supabase: 'tabler:brand-supabase',
+  'Multi-Tenant SaaS': 'tabler:users-group',
+  'Modular Architecture': 'tabler:components',
+  'Background Jobs / Queues': 'tabler:settings-automation',
+  'API Integration': 'tabler:plug-connected',
+  'Linux / Ubuntu': 'tabler:brand-ubuntu',
+  'Docker & Compose': 'tabler:brand-docker',
+  Nginx: 'tabler:server',
+  Traefik: 'tabler:route',
+  CloudPanel: 'tabler:cloud',
+  Dockploy: 'tabler:ship',
+  Cloudflare: 'tabler:brand-cloudflare',
+  'VPS Deployment': 'tabler:server-2',
+};
+const basePath = data.windowFilename.replace(/\/+$/, '');
+const folderSlug = (name: string) =>
+  name
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/&/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 ---
 
 <section id="tech-stack" class="page-section">
   <SectionHeading number="05" title={data.sectionTitle} heading={data.heading} />
-  <WindowFrame filename={data.windowFilename} status={data.windowStatus}>
+  <WindowFrame
+    filename={data.windowFilename}
+    status={data.windowStatus}
+    icon="tabler:folder-open"
+    prompt={data.terminalPrompt}
+  >
     <div class="skill-grid">
-      {data.groups.map((group: any) => (
-        <article>
-          <>
-            <h3>{group.name}</h3>
-            <ul>
-              {group.skills.map((skill: string) => (
-                <li>
-                  {skill}
-                  <span>
-                    <Icon name="tabler:circle-filled" size={8} />
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </>
+      {data.groups.map((group: any, index: number) => (
+        <article
+          class="skill-folder"
+          style={`--reveal-delay: ${index * 120}ms`}
+        >
+          <header class="skill-folder-header">
+            <Icon name="tabler:folder-open" size={19} />
+            <div>
+              <h3>{group.name}</h3>
+              <span>{`${basePath}/${group.folder ?? folderSlug(group.name)}/`}</span>
+            </div>
+          </header>
+          <ul>
+            {group.skills.map((skill: string) => (
+              <li>
+                <Icon name={skillIcons[skill] ?? 'tabler:file-code'} size={16} />
+                <span>{skill}</span>
+              </li>
+            ))}
+          </ul>
         </article>
       ))}
     </div>
   </WindowFrame>
 </section>
+
+<script>
+  const folders = document.querySelectorAll<HTMLElement>('.skill-folder');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+
+        const folder = entry.target as HTMLElement;
+        folder.classList.remove('is-pending');
+        folder.classList.add('animate-fade-in-up', 'animate-duration-500');
+        folder.style.animationDelay = 'var(--reveal-delay)';
+        observer.unobserve(folder);
+      }
+    }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+
+    folders.forEach((folder) => {
+      folder.classList.add('is-pending');
+      observer.observe(folder);
+    });
+  }
+</script>

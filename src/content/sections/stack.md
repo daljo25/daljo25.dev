@@ -2,37 +2,64 @@
 title: Stack & Competencias Técnicas
 order: 5
 sectionTitle: Stack & Competencias Técnicas
-windowFilename: stack://technologies/index
+windowFilename: workspace://technologies/skills/
 windowStatus: CORE SKILLS
-heading: Dominio de tecnologías de alta producción
+heading: Desarrollo de productos SaaS y herramientas para desarrolladores
+terminalPrompt:
+  user: daljo25@workstation
+  path: ~/technologies/skills/
+  command: ls -la
 groups:
   - name: Frontend & UI
+    folder: frontend-ui
     skills:
       [
-        Astro (Islands Arch),
-        Tailwind CSS v3 / v4,
-        TypeScript (Strict),
-        Vue.js • React,
-        Vanilla JS / Web Components,
+        TypeScript,
+        JavaScript,
+        React / Next.js,
+        Tailwind CSS,
+        HTML / CSS,
+        Blade,
+        Livewire,
+        Astro,
       ]
-  - name: Backend & Core
-    skills: [Laravel 10 / 11, Filament PHP v3, PHP 8.3 Modern, PostgreSQL / MySQL, Redis / Queues]
-  - name: DevOps & Infra
+  - name: Backend & Frameworks
+    folder: backend-frameworks
     skills:
       [
+        PHP 8.x,
+        Laravel,
+        Filament PHP,
+        Go,
+        Node.js,
+        RESTful APIs,
+        Composer,
+        CLI / TUI Development,
+      ]
+  - name: Bases de Datos & Arquitectura
+    folder: databases-architecture
+    skills:
+      [
+        PostgreSQL,
+        MySQL,
+        Redis,
+        Supabase,
+        Multi-Tenant SaaS,
+        Modular Architecture,
+        Background Jobs / Queues,
+        API Integration,
+      ]
+  - name: DevOps & Infraestructura
+    folder: devops-infrastructure
+    skills:
+      [
+        Linux / Ubuntu,
         Docker & Compose,
-        GitHub Actions CI/CD,
-        Linux / VPS Deploy,
-        Vite Bundler,
-        Nginx / Reverse Proxy,
-      ]
-  - name: Arquitectura
-    skills:
-      [
-        PWA / Offline-First,
-        RESTful & JSON APIs,
-        Modular Monoliths,
-        Event-Driven Queues,
-        Micro-Frontends (Islands),
+        Nginx,
+        Traefik,
+        CloudPanel,
+        Dockploy,
+        Cloudflare,
+        VPS Deployment,
       ]
 ---

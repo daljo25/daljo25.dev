@@ -6,7 +6,7 @@ name: Blade Pixelicon Icons
 path: workspace://tools/blade-pixelicon-icons
 version: v1.0.2
 command: composer require daljo25/blade-pixelicon-icons
-image: https://github.com/daljo25/blade-pixelicon-icons/raw/main/Thumbnail.png
+image: https://raw.githubusercontent.com/daljo25/blade-pixelicon-icons/main/Thumbnail.png
 imageAlt: Colección de iconos Pixelicon integrada en Laravel Blade.
 problem: La colección Pixel Icon Library no dispone de una integración directa con Blade UI Kit, lo que obliga a gestionar manualmente sus SVG o buscar alternativas para utilizarlos de forma nativa en Laravel.
 outcome: Integración de más de 450 iconos SVG de Pixel Icon Library en Laravel Blade, compatibles con componentes Blade, la directiva @svg y el helper svg(), sin dependencias adicionales en tiempo de ejecución.

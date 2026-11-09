@@ -26,10 +26,19 @@ const contact = section('contact');
 const site = section('site');
 const siteConfig = site?.data as
   | {
+      lang: string;
       brand: string;
       availability: string;
       navLabel: string;
       navLinks: { label: string; href: string }[];
+      ui: {
+        menuLabel: string;
+        terminalPrompt: string;
+        themeToggleLabel: string;
+        themeToggleTitle: string;
+        socialsLabel: string;
+        commandOutputLabel: string;
+      };
       footerStatus: string;
       footerSocials: { label: string; href: string }[];
       footerCopyright: string;
@@ -38,19 +47,30 @@ const siteConfig = site?.data as
   | undefined;
 ---
 
-<SiteLayout title={hero?.data.title ?? ''} description={hero?.data.description ?? ''}>
+<SiteLayout
+  lang={siteConfig?.lang ?? 'es'}
+  title={hero?.data.title ?? ''}
+  description={hero?.data.description ?? ''}
+>
   {siteConfig && (
     <Header
       brand={siteConfig.brand}
       availability={siteConfig.availability}
       navLabel={siteConfig.navLabel}
       links={siteConfig.navLinks}
+      ui={siteConfig.ui}
     />
   )}
   <main class="site-main">
     {hero && <Hero data={hero.data} socials={siteConfig?.footerSocials ?? []} />}
     {about && <About data={about.data} />}
-    {projectsSection && <Projects data={projectsSection.data} projects={projectEntries} />}
+    {projectsSection && (
+      <Projects
+        data={projectsSection.data}
+        projects={projectEntries}
+        outputLabel={siteConfig?.ui.commandOutputLabel ?? ''}
+      />
+    )}
     {openSource && <OpenSource data={openSource.data} items={openSourceItems} />}
     {experiments && <Experiments data={experiments.data} items={experimentsItems} />}
     {stack && <TechStack data={stack.data} />}
@@ -60,6 +80,7 @@ const siteConfig = site?.data as
     <Footer
       status={siteConfig.footerStatus}
       socials={siteConfig.footerSocials}
+      socialsLabel={siteConfig.ui.socialsLabel}
       copyright={siteConfig.footerCopyright}
       build={siteConfig.footerBuild}
     />

@@ -1,6 +1,7 @@
 ---
 title: Stack & Competencias Técnicas
 order: 5
+number: '05'
 sectionTitle: Stack & Competencias Técnicas
 windowFilename: workspace://technologies/skills/
 windowStatus: CORE SKILLS

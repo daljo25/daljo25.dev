@@ -3,10 +3,11 @@ import { Icon } from 'astro-icon/components';
 interface Props {
   status: string;
   socials: { label: string; href: string }[];
+  socialsLabel: string;
   copyright: string;
   build: string;
 }
-const { status, socials, copyright, build } = Astro.props;
+const { status, socials, socialsLabel, copyright, build } = Astro.props;
 const socialIcons: Record<string, string> = {
   GitHub: 'tabler:brand-github',
   'X / Twitter': 'tabler:brand-x',
@@ -20,7 +21,7 @@ const socialIcons: Record<string, string> = {
       <i></i>
       {status}
     </span>
-    <nav aria-label="Redes sociales">
+    <nav aria-label={socialsLabel}>
       {socials.map((social) => (
         <a href={social.href} target="_blank" rel="noreferrer">
           <Icon name={socialIcons[social.label] ?? 'tabler:link'} size={16} />

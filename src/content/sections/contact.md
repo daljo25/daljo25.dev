@@ -1,6 +1,7 @@
 ---
 title: Contacto Directo
 order: 6
+number: '06'
 sectionTitle: Contacto Directo
 windowFilename: workspace://scripts/contact.sh
 windowStatus: RUN

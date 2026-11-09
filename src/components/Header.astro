@@ -5,8 +5,14 @@ interface Props {
   brand: string;
   availability: string;
   navLabel: string;
+  ui: {
+    menuLabel: string;
+    terminalPrompt: string;
+    themeToggleLabel: string;
+    themeToggleTitle: string;
+  };
 }
-const { links, brand, availability, navLabel } = Astro.props;
+const { links, brand, availability, navLabel, ui } = Astro.props;
 ---
 
 <header class="site-header">
@@ -23,7 +29,7 @@ const { links, brand, availability, navLabel } = Astro.props;
       <nav class="header-nav" id="header-nav" aria-label={navLabel}>
         <div class="mobile-terminal-bar" aria-hidden="true">
           <span class="terminal-circles"><i></i><i></i><i></i></span>
-          <span>daljo25@portfolio:~</span>
+          <span>{ui.terminalPrompt}</span>
         </div>
         {links.map((link: any) => (
           <a href={link.href}>{link.label}</a>
@@ -34,8 +40,8 @@ const { links, brand, availability, navLabel } = Astro.props;
         type="button"
         role="switch"
         aria-checked="false"
-        aria-label="Tema claro"
-        title="Cambiar tema"
+        aria-label={ui.themeToggleLabel}
+        title={ui.themeToggleTitle}
         data-theme-toggle
       >
         <Icon name="tabler:sun" size={15} class="theme-icon theme-icon-sun" />
@@ -44,7 +50,7 @@ const { links, brand, availability, navLabel } = Astro.props;
       </button>
       <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="header-nav">
         <Icon name="tabler:terminal-2" size={16} />
-        <span>MENU</span>
+        <span>{ui.menuLabel}</span>
         <i aria-hidden="true"></i>
       </button>
     </div>

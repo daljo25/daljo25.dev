@@ -4,8 +4,9 @@ import ProjectTerminal from './ProjectTerminal.astro';
 interface Props {
   project: any;
   reverse?: boolean;
+  outputLabel: string;
 }
-const { project, reverse = false } = Astro.props;
+const { project, reverse = false, outputLabel } = Astro.props;
 ---
 
 <article class:list={['project-card', { reverse }]}>
@@ -25,6 +26,7 @@ const { project, reverse = false } = Astro.props;
     prompt={project.terminalPrompt}
     output={project.serverOutput}
     duration={project.terminalDurationMs ?? 5000}
+    outputLabel={outputLabel}
   />
   <div class="project-body">
     <div class="project-visual">

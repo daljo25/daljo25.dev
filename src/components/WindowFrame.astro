@@ -2,11 +2,11 @@
 import { Icon } from 'astro-icon/components';
 interface Props {
   filename: string;
-  status?: string;
+  status: string;
   icon?: string;
   prompt?: { user: string; path: string; command: string };
 }
-const { filename, status = 'LIVE', icon, prompt } = Astro.props;
+const { filename, status, icon, prompt } = Astro.props;
 ---
 
 <div class="window-frame">

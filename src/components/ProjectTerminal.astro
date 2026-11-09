@@ -3,9 +3,10 @@ interface Props {
   prompt: { user: string; path: string; command: string };
   output: string[];
   duration: number;
+  outputLabel: string;
 }
 
-const { prompt, output, duration } = Astro.props;
+const { prompt, output, duration, outputLabel } = Astro.props;
 ---
 
 <div class="project-terminal" data-duration={duration}>
@@ -14,7 +15,7 @@ const { prompt, output, duration } = Astro.props;
     <code>{prompt.command}</code>
     <i class="project-command-cursor" aria-hidden="true"></i>
   </div>
-  <ul class="project-output" aria-label="Salida del comando">
+  <ul class="project-output" aria-label={outputLabel}>
     {output.map((line) => <li>{line}</li>)}
   </ul>
 </div>

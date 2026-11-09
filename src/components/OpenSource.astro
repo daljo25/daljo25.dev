@@ -10,7 +10,7 @@ const orderedItems = [...items].sort((a, b) => (a.data.order ?? 0) - (b.data.ord
 ---
 
 <section id="open-source" class="page-section">
-  <SectionHeading number="03" title={data.sectionTitle} heading={data.heading} />
+  <SectionHeading number={data.number} title={data.sectionTitle} heading={data.heading} />
   <div class="utility-grid">
     {orderedItems.map(({ data: item }, index) => (
       <article

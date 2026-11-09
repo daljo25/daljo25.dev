@@ -1,6 +1,7 @@
 ---
 title: Sobre mí
 order: 1
+number: '01'
 sectionTitle: Sobre mí
 windowFilename: ~/portfolio/about.md
 windowStatus: UTF-8 · zsh

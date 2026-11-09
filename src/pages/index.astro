@@ -39,18 +39,83 @@ const siteConfig = site?.data as
         socialsLabel: string;
         commandOutputLabel: string;
       };
+      seo: {
+        title: string;
+        description: string;
+        image: string;
+        imageWidth: number;
+        imageHeight: number;
+        imageAlt: string;
+        author: string;
+        twitter: string;
+      };
       footerStatus: string;
       footerSocials: { label: string; href: string }[];
       footerCopyright: string;
       footerBuild: string;
     }
   | undefined;
+
+const siteUrl = Astro.site ?? Astro.url;
+const seo = siteConfig?.seo;
+const pageTitle = seo?.title ?? hero?.data.title ?? '';
+const pageDescription = seo?.description ?? hero?.data.description ?? '';
+
+const stackSkills: string[] = (stack?.data as any)?.groups?.flatMap((group: any) => group.skills) ?? [];
+const personId = new URL('/#person', siteUrl).href;
+const websiteId = new URL('/#website', siteUrl).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: new URL('/', siteUrl).href,
+      name: siteConfig?.brand,
+      inLanguage: siteConfig?.lang,
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': new URL('/#webpage', siteUrl).href,
+      url: new URL('/', siteUrl).href,
+      name: pageTitle,
+      description: pageDescription,
+      isPartOf: { '@id': websiteId },
+      about: { '@id': personId },
+      mainEntity: { '@id': personId },
+      inLanguage: siteConfig?.lang,
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: seo?.author ?? siteConfig?.brand,
+      url: new URL('/', siteUrl).href,
+      image: (hero?.data as any)?.photo?.image
+        ? new URL((hero?.data as any).photo.image, siteUrl).href
+        : undefined,
+      jobTitle: `${hero?.data.role ?? ''} ${hero?.data.highlight ?? ''}`.trim(),
+      description: pageDescription,
+      sameAs: siteConfig?.footerSocials?.map((social) => social.href),
+      knowsAbout: [...new Set(stackSkills)],
+    },
+  ],
+};
 ---
 
 <SiteLayout
   lang={siteConfig?.lang ?? 'es'}
-  title={hero?.data.title ?? ''}
-  description={hero?.data.description ?? ''}
+  siteName={siteConfig?.brand ?? ''}
+  title={pageTitle}
+  description={pageDescription}
+  image={seo?.image}
+  imageAlt={seo?.imageAlt}
+  imageWidth={seo?.imageWidth}
+  imageHeight={seo?.imageHeight}
+  author={seo?.author}
+  twitter={seo?.twitter}
+  jsonLd={jsonLd}
 >
   {siteConfig && (
     <Header

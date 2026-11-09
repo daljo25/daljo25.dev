@@ -28,7 +28,7 @@ const { image, alt, filename, liveLabel, latency, stateLabel, state, architectur
     </span>
   </div>
   <div class="portrait">
-    <img src={image} alt={alt} loading="eager" />
+    <img src={image} alt={alt} loading="eager" fetchpriority="high" decoding="async" />
     <span class="portrait-latency">{latency}</span>
     <div class="portrait-state">
       <small>{stateLabel}</small>

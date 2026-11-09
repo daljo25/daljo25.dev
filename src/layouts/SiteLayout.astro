@@ -2,10 +2,35 @@
 import '../styles/global.css';
 interface Props {
   lang: string;
+  siteName: string;
   title: string;
   description: string;
+  image?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  author?: string;
+  twitter?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
-const { lang, title, description } = Astro.props;
+const {
+  lang,
+  siteName,
+  title,
+  description,
+  image,
+  imageAlt,
+  imageWidth,
+  imageHeight,
+  author,
+  twitter,
+  jsonLd,
+} = Astro.props;
+
+const siteUrl = Astro.site ?? Astro.url;
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = image ? new URL(image, siteUrl).href : undefined;
+const ogLocale = lang === 'es' ? 'es_ES' : lang === 'en' ? 'en_US' : lang;
 ---
 
 <!doctype html>
@@ -14,8 +39,51 @@ const { lang, title, description } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    {author && <meta name="author" content={author} />}
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={ogLocale} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
+    {ogImage && imageHeight && <meta property="og:image:height" content={String(imageHeight)} />}
+    {imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    {imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
+    {twitter && <meta name="twitter:creator" content={twitter} />}
+    {twitter && <meta name="twitter:site" content={twitter} />}
+
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', siteUrl).href} />
+
+    <meta name="theme-color" content="#111317" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/webp" href="/logo.webp" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
     <script is:inline>
       // Aplica el tema antes del primer paint para evitar el flash.
       (() => {
@@ -35,13 +103,8 @@ const { lang, title, description } = Astro.props;
         root.dataset.theme = theme;
       })();
     </script>
-    <link rel="icon" type="image/webp" href="/logo.webp" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
     <slot />

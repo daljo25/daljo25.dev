@@ -19,6 +19,15 @@ ui:
   themeToggleTitle: Cambiar tema
   socialsLabel: Redes sociales
   commandOutputLabel: Salida del comando
+seo:
+  title: daljo25.dev — Desarrollador Full Stack · Laravel, Filament & SaaS
+  description: Portafolio de daljo25, desarrollador full stack especializado en Laravel, Filament, PHP y productos SaaS. Casos de estudio, open source y experimentos.
+  image: /og-image.png
+  imageWidth: 1200
+  imageHeight: 630
+  imageAlt: daljo25.dev — Desarrollador Full Stack especializado en Laravel, Filament y SaaS
+  author: daljo25
+  twitter: '@daljo25'
 footerStatus: UTC+1 (Sevilla, ES) • Online / Conectado
 footerSocials:
   - { label: GitHub, href: 'https://github.com/daljo25' }

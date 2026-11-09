@@ -6,7 +6,7 @@ availability: Available for freelance & select projects
 navLabel: Navegación principal
 navLinks:
   - { label: Sobre mí, href: '#sobre-mi' }
-  - { label: Proyectos, href: '#proyectos', current: true }
+  - { label: Proyectos, href: '#proyectos' }
   - { label: Open Source, href: '#open-source' }
   - { label: Experimentos, href: '#experimentos' }
   - { label: Tech, href: '#tech-stack' }

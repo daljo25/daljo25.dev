@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 interface Props {
-  links: { label: string; href: string; current?: boolean }[];
+  links: { label: string; href: string }[];
   brand: string;
   availability: string;
   navLabel: string;
@@ -19,51 +19,114 @@ const { links, brand, availability, navLabel } = Astro.props;
         <span>{availability}</span>
       </div>
     </div>
-    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="header-nav">
-      <Icon name="tabler:terminal-2" size={16} />
-      <span>MENU</span>
-      <i aria-hidden="true"></i>
-    </button>
-    <nav class="header-nav" id="header-nav" aria-label={navLabel}>
-      <div class="mobile-terminal-bar" aria-hidden="true">
-        <span class="terminal-circles"><i></i><i></i><i></i></span>
-        <span>daljo25@portfolio:~</span>
-      </div>
-      {links.map((link: any) => (
-        <a
-          href={link.href}
-          class:list={{ 'is-active': link.current }}
-          aria-current={link.current ? 'page' : undefined}
-        >
-          {link.label}
-        </a>
-      ))}
-    </nav>
+    <div class="header-actions">
+      <nav class="header-nav" id="header-nav" aria-label={navLabel}>
+        <div class="mobile-terminal-bar" aria-hidden="true">
+          <span class="terminal-circles"><i></i><i></i><i></i></span>
+          <span>daljo25@portfolio:~</span>
+        </div>
+        {links.map((link: any) => (
+          <a href={link.href}>{link.label}</a>
+        ))}
+      </nav>
+      <button
+        class="theme-toggle"
+        type="button"
+        role="switch"
+        aria-checked="false"
+        aria-label="Tema claro"
+        title="Cambiar tema"
+        data-theme-toggle
+      >
+        <Icon name="tabler:sun" size={15} class="theme-icon theme-icon-sun" />
+        <Icon name="tabler:moon" size={15} class="theme-icon theme-icon-moon" />
+        <span class="theme-toggle-thumb" aria-hidden="true"></span>
+      </button>
+      <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="header-nav">
+        <Icon name="tabler:terminal-2" size={16} />
+        <span>MENU</span>
+        <i aria-hidden="true"></i>
+      </button>
+    </div>
   </div>
 </header>
 
 <script>
+  const root = document.documentElement;
+  const themeToggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  const systemTheme = window.matchMedia('(prefers-color-scheme: light)');
+
+  const readStoredTheme = () => {
+    try {
+      return localStorage.getItem('theme');
+    } catch {
+      return null;
+    }
+  };
+
+  const syncThemeToggle = () => {
+    themeToggle?.setAttribute('aria-checked', String(root.dataset.theme === 'light'));
+  };
+
+  const applyTheme = (theme: 'light' | 'dark') => {
+    root.dataset.theme = theme;
+    syncThemeToggle();
+  };
+
+  syncThemeToggle();
+
+  themeToggle?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      /* sin persistencia: el tema se mantiene solo en esta sesión */
+    }
+  });
+
+  // Sin preferencia guardada, el tema sigue al sistema en caliente.
+  systemTheme.addEventListener('change', (event) => {
+    if (readStoredTheme()) return;
+    applyTheme(event.matches ? 'light' : 'dark');
+  });
+
   const navLinks = [...document.querySelectorAll<HTMLAnchorElement>('.header-nav a[href^="#"]')];
   const sections = navLinks
     .map((link) => document.querySelector<HTMLElement>(link.getAttribute('href')!))
     .filter((section): section is HTMLElement => section !== null);
+  const header = document.querySelector<HTMLElement>('.site-header');
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        for (const link of navLinks) {
-          const active = link.hash === `#${entry.target.id}`;
-          link.classList.toggle('is-active', active);
-          if (active) link.setAttribute('aria-current', 'page');
-          else link.removeAttribute('aria-current');
-        }
-      }
-    },
-    { rootMargin: '-25% 0px -60% 0px' },
-  );
+  // Marca el último enlace cuya sección ya pasó la línea de referencia.
+  // Si ninguna lo ha hecho (hero), no queda ningún enlace activo.
+  const setActiveLink = () => {
+    const line = (header?.offsetHeight ?? 0) + window.innerHeight * 0.3;
+    let current: HTMLElement | null = null;
 
-  sections.forEach((section) => observer.observe(section));
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= line) current = section;
+    }
+
+    for (const link of navLinks) {
+      const active = current !== null && link.hash === `#${current.id}`;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
+  };
+
+  let frame = 0;
+  const scheduleActiveLink = () => {
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      setActiveLink();
+    });
+  };
+
+  setActiveLink();
+  window.addEventListener('scroll', scheduleActiveLink, { passive: true });
+  window.addEventListener('resize', scheduleActiveLink);
 
   const menuToggle = document.querySelector<HTMLButtonElement>('.mobile-menu-toggle');
   const headerNav = document.querySelector<HTMLElement>('.header-nav');

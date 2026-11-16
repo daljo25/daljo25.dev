@@ -2,10 +2,12 @@
 import { Icon } from 'astro-icon/components';
 import SectionHeading from './SectionHeading.astro';
 import WindowFrame from './WindowFrame.astro';
+import { anchorFor, toLocale } from '../lib/i18n';
 interface Props {
   data: any;
 }
 const { data } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
 const markdownSource = [
   `# ${data.heading}`,
   ...data.paragraphs,
@@ -20,7 +22,7 @@ const markdownSource = [
 ].join('\n\n');
 ---
 
-<section id="sobre-mi" class="page-section">
+<section id={anchorFor(locale, 'about')} class="page-section">
   <SectionHeading number={data.number} title={data.sectionTitle} />
   <WindowFrame
     filename={data.windowFilename}

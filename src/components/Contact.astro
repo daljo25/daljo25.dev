@@ -2,11 +2,13 @@
 import { Icon } from 'astro-icon/components';
 import SectionHeading from './SectionHeading.astro';
 import WindowFrame from './WindowFrame.astro';
+import { anchorFor, toLocale } from '../lib/i18n';
 interface Props {
   data: any;
   socials: { label: string; href: string }[];
 }
 const { data, socials } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
 const socialIcons: Record<string, string> = {
   GitHub: 'tabler:brand-github',
   'X / Twitter': 'tabler:brand-x',
@@ -14,7 +16,7 @@ const socialIcons: Record<string, string> = {
 };
 ---
 
-<section id="contacto" class="page-section">
+<section id={anchorFor(locale, 'contact')} class="page-section">
   <SectionHeading
     number={data.number}
     title={data.sectionTitle}
@@ -56,8 +58,7 @@ const socialIcons: Record<string, string> = {
         <nav class="contact-socials">
           {socials.map((item) => (
             <a href={item.href} target="_blank" rel="noreferrer">
-              {item.label}{' '}
-              <Icon name={socialIcons[item.label] ?? 'tabler:link'} size={16} />
+              {item.label} <Icon name={socialIcons[item.label] ?? 'tabler:link'} size={16} />
             </a>
           ))}
         </nav>
@@ -98,19 +99,24 @@ const socialIcons: Record<string, string> = {
 
 <script>
   const contactGrid = document.querySelector<HTMLElement>('.contact-grid');
-  const contactBlocks = contactGrid?.querySelectorAll<HTMLElement>('.contact-details, .contact-form');
+  const contactBlocks = contactGrid?.querySelectorAll<HTMLElement>(
+    '.contact-details, .contact-form',
+  );
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (contactGrid && contactBlocks && !prefersReducedMotion && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
 
-      contactBlocks.forEach((block, index) => {
-        block.classList.add('animate-fade-in-up', 'animate-duration-500');
-        block.style.animationDelay = `${index * 120}ms`;
-      });
-      observer.disconnect();
-    }, { threshold: 0.15 });
+        contactBlocks.forEach((block, index) => {
+          block.classList.add('animate-fade-in-up', 'animate-duration-500');
+          block.style.animationDelay = `${index * 120}ms`;
+        });
+        observer.disconnect();
+      },
+      { threshold: 0.15 },
+    );
 
     observer.observe(contactGrid);
   }

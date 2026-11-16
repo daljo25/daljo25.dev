@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Contacto Directo
 order: 6
 number: '06'

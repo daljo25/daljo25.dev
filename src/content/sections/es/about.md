@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Sobre mí
 order: 1
 number: '01'

@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Casos de estudio & Arquitectura aplicada
 description: Sistemas productivos reales en los que he diseñado y ejecutado infraestructura técnica y experiencia de usuario.
 order: 2

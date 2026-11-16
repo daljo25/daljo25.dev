@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Stack & Competencias Técnicas
 order: 5
 number: '05'
@@ -14,29 +15,11 @@ groups:
   - name: Frontend & UI
     folder: frontend-ui
     skills:
-      [
-        TypeScript,
-        JavaScript,
-        React / Next.js,
-        Tailwind CSS,
-        HTML / CSS,
-        Blade,
-        Livewire,
-        Astro,
-      ]
+      [TypeScript, JavaScript, React / Next.js, Tailwind CSS, HTML / CSS, Blade, Livewire, Astro]
   - name: Backend & Frameworks
     folder: backend-frameworks
     skills:
-      [
-        PHP 8.x,
-        Laravel,
-        Filament PHP,
-        Go,
-        Node.js,
-        RESTful APIs,
-        Composer,
-        CLI / TUI Development,
-      ]
+      [PHP 8.x, Laravel, Filament PHP, Go, Node.js, RESTful APIs, Composer, CLI / TUI Development]
   - name: Bases de Datos & Arquitectura
     folder: databases-architecture
     skills:

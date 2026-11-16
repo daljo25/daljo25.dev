@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Bingo App
 description: Creado para jugar en familia y amigos.
 order: 1

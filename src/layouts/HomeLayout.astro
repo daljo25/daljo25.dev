@@ -1,0 +1,170 @@
+---
+import SiteLayout from './SiteLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Projects from '../components/Projects.astro';
+import OpenSource from '../components/OpenSource.astro';
+import Experiments from '../components/Experiments.astro';
+import TechStack from '../components/TechStack.astro';
+import Contact from '../components/Contact.astro';
+import { anchorFor, findByKey, getLocalizedEntries, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const sections = await getLocalizedEntries('sections', locale);
+const projectEntries = await getLocalizedEntries('projects', locale);
+const openSourceItems = await getLocalizedEntries('openSource', locale);
+const experimentsItems = await getLocalizedEntries('experiments', locale);
+
+const hero = findByKey(sections, 'hero');
+const about = findByKey(sections, 'about');
+const projectsSection = findByKey(sections, 'projects');
+const openSource = findByKey(sections, 'open-source');
+const experiments = findByKey(sections, 'experiments');
+const stack = findByKey(sections, 'stack');
+const contact = findByKey(sections, 'contact');
+const site = findByKey(sections, 'site');
+
+const siteConfig = site?.data as
+  | {
+      lang: string;
+      brand: string;
+      availability: string;
+      navLabel: string;
+      navLinks: { label: string; section: string }[];
+      ui: {
+        menuLabel: string;
+        terminalPrompt: string;
+        themeToggleLabel: string;
+        themeToggleTitle: string;
+        socialsLabel: string;
+        commandOutputLabel: string;
+      };
+      seo: {
+        title: string;
+        description: string;
+        image: string;
+        imageWidth: number;
+        imageHeight: number;
+        imageAlt: string;
+        author: string;
+        twitter: string;
+      };
+      footerStatus: string;
+      footerSocials: { label: string; href: string }[];
+      footerCopyright: string;
+      footerBuild: string;
+    }
+  | undefined;
+
+// Las anclas de navegación se derivan del mapa por idioma para que los
+// enlaces del header nunca apunten a un id inexistente.
+const navLinks =
+  siteConfig?.navLinks.map((link) => ({
+    label: link.label,
+    href: `#${anchorFor(locale, link.section)}`,
+  })) ?? [];
+
+const siteUrl = Astro.site ?? Astro.url;
+const seo = siteConfig?.seo;
+const pageTitle = seo?.title ?? hero?.data.title ?? '';
+const pageDescription = seo?.description ?? hero?.data.description ?? '';
+
+const stackSkills: string[] =
+  (stack?.data as any)?.groups?.flatMap((group: any) => group.skills) ?? [];
+const personId = new URL('/#person', siteUrl).href;
+const websiteId = new URL('/#website', siteUrl).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: new URL('/', siteUrl).href,
+      name: siteConfig?.brand,
+      inLanguage: siteConfig?.lang,
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': new URL('/#webpage', siteUrl).href,
+      url: new URL('/', siteUrl).href,
+      name: pageTitle,
+      description: pageDescription,
+      isPartOf: { '@id': websiteId },
+      about: { '@id': personId },
+      mainEntity: { '@id': personId },
+      inLanguage: siteConfig?.lang,
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: seo?.author ?? siteConfig?.brand,
+      url: new URL('/', siteUrl).href,
+      image: (hero?.data as any)?.photo?.image
+        ? new URL((hero?.data as any).photo.image, siteUrl).href
+        : undefined,
+      jobTitle: `${hero?.data.role ?? ''} ${hero?.data.highlight ?? ''}`.trim(),
+      description: pageDescription,
+      sameAs: siteConfig?.footerSocials?.map((social) => social.href),
+      knowsAbout: [...new Set(stackSkills)],
+    },
+  ],
+};
+---
+
+<SiteLayout
+  lang={siteConfig?.lang ?? locale}
+  siteName={siteConfig?.brand ?? ''}
+  title={pageTitle}
+  description={pageDescription}
+  image={seo?.image}
+  imageAlt={seo?.imageAlt}
+  imageWidth={seo?.imageWidth}
+  imageHeight={seo?.imageHeight}
+  author={seo?.author}
+  twitter={seo?.twitter}
+  jsonLd={jsonLd}
+>
+  {siteConfig && (
+    <Header
+      brand={siteConfig.brand}
+      availability={siteConfig.availability}
+      navLabel={siteConfig.navLabel}
+      links={navLinks}
+      ui={siteConfig.ui}
+      locale={locale}
+    />
+  )}
+  <main class="site-main">
+    {hero && <Hero data={hero.data} socials={siteConfig?.footerSocials ?? []} />}
+    {about && <About data={about.data} />}
+    {projectsSection && (
+      <Projects
+        data={projectsSection.data}
+        projects={projectEntries}
+        outputLabel={siteConfig?.ui.commandOutputLabel ?? ''}
+      />
+    )}
+    {openSource && <OpenSource data={openSource.data} items={openSourceItems} />}
+    {experiments && <Experiments data={experiments.data} items={experimentsItems} />}
+    {stack && <TechStack data={stack.data} />}
+    {contact && <Contact data={contact.data} socials={siteConfig?.footerSocials ?? []} />}
+  </main>
+  {siteConfig && (
+    <Footer
+      status={siteConfig.footerStatus}
+      socials={siteConfig.footerSocials}
+      socialsLabel={siteConfig.ui.socialsLabel}
+      copyright={siteConfig.footerCopyright}
+      build={siteConfig.footerBuild}
+    />
+  )}
+</SiteLayout>

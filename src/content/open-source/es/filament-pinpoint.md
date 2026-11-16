@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Filament Pinpoint • Open Source Contribution
 description: Contribución de traducción al español para Filament Pinpoint, un selector de ubicaciones con mapas integrado en Filament.
 order: 9

@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Filament Tabler Icons • Plugin
 description: Integra la colección completa de Tabler Icons en Filament, con soporte para formularios, tablas, acciones y navegación.
 order: 2

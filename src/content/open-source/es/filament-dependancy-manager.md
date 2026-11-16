@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Filament Dependency Manager • Plugin
 description: Monitoriza dependencias de Composer y NPM desde Filament, detecta actualizaciones disponibles y facilita su actualización.
 order: 3

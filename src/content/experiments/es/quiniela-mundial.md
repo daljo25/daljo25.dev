@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Quiniela del Mundial
 description: App creada en un par de días para competir con pronósticos del torneo entre amigos.
 order: 2

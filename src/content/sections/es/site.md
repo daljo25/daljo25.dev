@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Portfolio
 description: Portfolio de desarrollo de software.
 lang: es
@@ -6,12 +7,12 @@ brand: daljo25.dev
 availability: Available for freelance & select projects
 navLabel: Navegación principal
 navLinks:
-  - { label: Sobre mí, href: '#sobre-mi' }
-  - { label: Proyectos, href: '#proyectos' }
-  - { label: Open Source, href: '#open-source' }
-  - { label: Experimentos, href: '#experimentos' }
-  - { label: Tech, href: '#tech-stack' }
-  - { label: Contacto, href: '#contacto' }
+  - { label: Sobre mí, section: about }
+  - { label: Proyectos, section: projects }
+  - { label: Open Source, section: open-source }
+  - { label: Experimentos, section: experiments }
+  - { label: Tech, section: stack }
+  - { label: Contacto, section: contact }
 ui:
   menuLabel: MENU
   terminalPrompt: daljo25@portfolio:~
@@ -19,6 +20,7 @@ ui:
   themeToggleTitle: Cambiar tema
   socialsLabel: Redes sociales
   commandOutputLabel: Salida del comando
+  localeSwitcherLabel: Cambiar idioma
 seo:
   title: daljo25.dev — Desarrollador Full Stack · Laravel, Filament & SaaS
   description: Portafolio de daljo25, desarrollador full stack especializado en Laravel, Filament, PHP y productos SaaS. Casos de estudio, open source y experimentos.

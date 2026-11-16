@@ -2,26 +2,24 @@
 import { Icon } from 'astro-icon/components';
 import SectionHeading from './SectionHeading.astro';
 import WindowFrame from './WindowFrame.astro';
+import { anchorFor, toLocale } from '../lib/i18n';
 interface Props {
   data: any;
   items: any[];
 }
 const { data, items } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
 const orderedItems = [...items].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 ---
 
-<section id="experimentos" class="page-section">
+<section id={anchorFor(locale, 'experiments')} class="page-section">
   <SectionHeading
     number={data.number}
     title={data.sectionTitle}
     heading={data.heading}
     summary={data.description}
   />
-  <WindowFrame
-    filename={data.windowFilename}
-    status={data.windowStatus}
-    icon="tabler:folder-open"
-  >
+  <WindowFrame filename={data.windowFilename} status={data.windowStatus} icon="tabler:folder-open">
     <div class="experiment-grid">
       {orderedItems.map(({ data: item }) => (
         <article>

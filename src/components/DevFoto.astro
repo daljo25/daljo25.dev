@@ -44,7 +44,9 @@ const { image, alt, filename, liveLabel, latency, stateLabel, state, architectur
 <script>
   const card = document.querySelector<HTMLElement>('.dev-photo-card');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const desktopPointer = window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)').matches;
+  const desktopPointer = window.matchMedia(
+    '(min-width: 1024px) and (hover: hover) and (pointer: fine)',
+  ).matches;
 
   if (card && desktopPointer && !reducedMotion) {
     card.addEventListener('pointermove', (event) => {

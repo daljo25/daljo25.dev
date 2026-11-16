@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Portfolio de daljo25.dev
 description: Portfolio de desarrollo de software.
 order: 0

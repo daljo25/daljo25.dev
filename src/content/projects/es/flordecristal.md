@@ -1,6 +1,7 @@
 ---
+locale: es
 title: Flor de Cristal
-description: Tienda online para joyeria 
+description: Tienda online para joyeria
 order: 2
 terminalDurationMs: 5000
 name: Flor de Cristal
@@ -24,7 +25,7 @@ metrics:
     { label: VENTAS / DÍA, value: 167 },
   ]
 highlights:
-  - Manmejo de inventario, 
+  - Manmejo de inventario,
   - Gestion de envios
   - Procesamiento asíncrono de reportes PDF.
   - Pagos por stripe

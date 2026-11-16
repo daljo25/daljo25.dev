@@ -1,16 +1,18 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import ProjectCard from './ProjectCard.astro';
+import { anchorFor, toLocale } from '../lib/i18n';
 interface Props {
   data: any;
   projects: any[];
   outputLabel: string;
 }
 const { data, projects, outputLabel } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
 const orderedProjects = [...projects].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 ---
 
-<section id="proyectos" class="page-section">
+<section id={anchorFor(locale, 'projects')} class="page-section">
   <SectionHeading
     number={data.number}
     title={data.sectionTitle}

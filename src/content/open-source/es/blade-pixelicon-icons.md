@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Blade Pixelicon Icons • Package
 description: Integra más de 450 iconos de Pixel Icon Library de HackerNoon en tus vistas Laravel Blade mediante Blade UI Kit.
 order: 5

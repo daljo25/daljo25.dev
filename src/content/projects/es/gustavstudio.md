@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Gustavstudio
 description: Experiencia digital interactiva para una firma de dirección de arte y producción multimedia. Arquitectura estática con Astro y carga progresiva de imágenes de alta resolución.
 order: 3

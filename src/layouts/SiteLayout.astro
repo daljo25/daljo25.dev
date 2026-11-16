@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import { defaultLocale, locales, toLocale } from '../lib/i18n';
 interface Props {
   lang: string;
   siteName: string;
@@ -31,6 +33,15 @@ const siteUrl = Astro.site ?? Astro.url;
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
 const ogImage = image ? new URL(image, siteUrl).href : undefined;
 const ogLocale = lang === 'es' ? 'es_ES' : lang === 'en' ? 'en_US' : lang;
+
+// Alternativas hreflang: la misma página en cada idioma soportado.
+const locale = toLocale(lang);
+const alternates = locales.map((code) => ({
+  locale: code,
+  href: getAbsoluteLocaleUrl(code),
+}));
+// x-default apunta siempre al idioma principal del sitio.
+const defaultLocaleHref = getAbsoluteLocaleUrl(defaultLocale);
 ---
 
 <!doctype html>
@@ -52,6 +63,11 @@ const ogLocale = lang === 'es' ? 'es_ES' : lang === 'en' ? 'en_US' : lang;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={ogLocale} />
+    {alternates
+      .filter((alternate) => alternate.locale !== locale)
+      .map((alternate) => (
+        <meta property="og:locale:alternate" content={alternate.locale} />
+      ))}
     {ogImage && <meta property="og:image" content={ogImage} />}
     {ogImage && imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
     {ogImage && imageHeight && <meta property="og:image:height" content={String(imageHeight)} />}
@@ -66,8 +82,10 @@ const ogLocale = lang === 'es' ? 'es_ES' : lang === 'en' ? 'en_US' : lang;
     {twitter && <meta name="twitter:creator" content={twitter} />}
     {twitter && <meta name="twitter:site" content={twitter} />}
 
-    <link rel="alternate" hreflang={lang} href={canonical} />
-    <link rel="alternate" hreflang="x-default" href={new URL('/', siteUrl).href} />
+    {alternates.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.locale} href={alternate.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={defaultLocaleHref} />
 
     <meta name="theme-color" content="#111317" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f6f7f5" media="(prefers-color-scheme: light)" />

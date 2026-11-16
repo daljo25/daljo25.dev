@@ -1,22 +1,21 @@
 ---
 import { Icon } from 'astro-icon/components';
 import SectionHeading from './SectionHeading.astro';
+import { anchorFor, toLocale } from '../lib/i18n';
 interface Props {
   data: any;
   items: any[];
 }
 const { data, items } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
 const orderedItems = [...items].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 ---
 
-<section id="open-source" class="page-section">
+<section id={anchorFor(locale, 'open-source')} class="page-section">
   <SectionHeading number={data.number} title={data.sectionTitle} heading={data.heading} />
   <div class="utility-grid">
     {orderedItems.map(({ data: item }, index) => (
-      <article
-        class="utility-card opensource-card"
-        style={`--reveal-delay: ${index * 120}ms`}
-      >
+      <article class="utility-card opensource-card" style={`--reveal-delay: ${index * 120}ms`}>
         <div class="window-bar">
           <div class="window-dots">
             <i></i>
@@ -71,17 +70,20 @@ const orderedItems = [...items].sort((a, b) => (a.data.order ?? 0) - (b.data.ord
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
 
-        const card = entry.target as HTMLElement;
-        card.classList.remove('is-pending');
-        card.classList.add('animate-fade-in-up', 'animate-duration-500');
-        card.style.animationDelay = 'var(--reveal-delay)';
-        observer.unobserve(card);
-      }
-    }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+          const card = entry.target as HTMLElement;
+          card.classList.remove('is-pending');
+          card.classList.add('animate-fade-in-up', 'animate-duration-500');
+          card.style.animationDelay = 'var(--reveal-delay)';
+          observer.unobserve(card);
+        }
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -5% 0px' },
+    );
 
     cards.forEach((card) => {
       card.classList.add('is-pending');

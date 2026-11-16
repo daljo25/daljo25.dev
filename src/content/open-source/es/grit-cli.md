@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Grit setup • CLI
 description: grit setup un instalador guiado para nuevos proyectos del framework grit.
 order: 1

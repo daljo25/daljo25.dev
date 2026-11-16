@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Ecosistema & Open Source
 order: 3
 number: '03'

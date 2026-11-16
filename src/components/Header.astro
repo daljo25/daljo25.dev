@@ -1,5 +1,14 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import {
+  anchorFor,
+  localeLabels,
+  localeShortLabels,
+  locales,
+  sectionAnchors,
+  type Locale,
+} from '../lib/i18n';
 interface Props {
   links: { label: string; href: string }[];
   brand: string;
@@ -10,15 +19,17 @@ interface Props {
     terminalPrompt: string;
     themeToggleLabel: string;
     themeToggleTitle: string;
+    localeSwitcherLabel?: string;
   };
+  locale: Locale;
 }
-const { links, brand, availability, navLabel, ui } = Astro.props;
+const { links, brand, availability, navLabel, ui, locale } = Astro.props;
 ---
 
 <header class="site-header">
   <div class="header-inner">
     <div class="header-identity">
-      <a class="header-brand" href="#top" aria-label={brand}>
+      <a class="header-brand" href={`#${anchorFor(locale, 'hero')}`} aria-label={brand}>
         {brand}
       </a>
       <div class="header-availability">
@@ -28,13 +39,40 @@ const { links, brand, availability, navLabel, ui } = Astro.props;
     <div class="header-actions">
       <nav class="header-nav" id="header-nav" aria-label={navLabel}>
         <div class="mobile-terminal-bar" aria-hidden="true">
-          <span class="terminal-circles"><i></i><i></i><i></i></span>
+          <span class="terminal-circles">
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
           <span>{ui.terminalPrompt}</span>
         </div>
         {links.map((link: any) => (
           <a href={link.href}>{link.label}</a>
         ))}
       </nav>
+      <div
+        class="locale-switch"
+        role="group"
+        aria-label={ui.localeSwitcherLabel ?? 'Language'}
+        data-locale-switch
+        data-current-locale={locale}
+        data-anchors={JSON.stringify(sectionAnchors)}
+      >
+        {locales.map((code) => (
+          <a
+            href={getRelativeLocaleUrl(code)}
+            lang={code}
+            hreflang={code}
+            class:list={['locale-switch-link', { 'is-active': code === locale }]}
+            aria-current={code === locale ? 'true' : undefined}
+            title={localeLabels[code]}
+            data-locale-link
+            data-locale={code}
+          >
+            {localeShortLabels[code]}
+          </a>
+        ))}
+      </div>
       <button
         class="theme-toggle"
         type="button"
@@ -48,7 +86,12 @@ const { links, brand, availability, navLabel, ui } = Astro.props;
         <Icon name="tabler:moon" size={15} class="theme-icon theme-icon-moon" />
         <span class="theme-toggle-thumb" aria-hidden="true"></span>
       </button>
-      <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="header-nav">
+      <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="header-nav"
+      >
         <Icon name="tabler:terminal-2" size={16} />
         <span>{ui.menuLabel}</span>
         <i aria-hidden="true"></i>
@@ -151,5 +194,35 @@ const { links, brand, availability, navLabel, ui } = Astro.props;
   headerNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeMenu();
+  });
+
+  // Selector de idioma: al cambiar de idioma se conserva la sección visible
+  // traduciendo el ancla actual a su equivalente en el idioma destino.
+  const localeSwitch = document.querySelector<HTMLElement>('[data-locale-switch]');
+  const anchors = JSON.parse(localeSwitch?.dataset.anchors ?? '{}') as Record<
+    string,
+    Record<string, string>
+  >;
+  const currentLocale = localeSwitch?.dataset.currentLocale ?? '';
+
+  localeSwitch?.querySelectorAll<HTMLAnchorElement>('[data-locale-link]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const targetLocale = link.dataset.locale;
+      if (!targetLocale || !anchors[currentLocale] || !anchors[targetLocale]) return;
+
+      const hash = window.location.hash.replace('#', '');
+      if (!hash) return;
+
+      const section = Object.keys(anchors[currentLocale]).find(
+        (key) => anchors[currentLocale][key] === hash,
+      );
+      if (!section) return;
+
+      const targetHash = anchors[targetLocale][section];
+      if (!targetHash) return;
+
+      event.preventDefault();
+      window.location.href = `${link.getAttribute('href')}#${targetHash}`;
+    });
   });
 </script>

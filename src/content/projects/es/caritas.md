@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Cáritas Bellavista
 description: Aplicación web para la gestión integral de Cáritas parroquiales, desarrollada con Laravel 13 y FilamentPHP 5.
 order: 1

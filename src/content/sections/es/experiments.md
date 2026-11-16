@@ -1,4 +1,5 @@
 ---
+locale: es
 title: Weekend Lab
 order: 4
 number: '04'

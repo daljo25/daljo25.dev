@@ -2,10 +2,12 @@
 import { Icon } from 'astro-icon/components';
 import SectionHeading from './SectionHeading.astro';
 import WindowFrame from './WindowFrame.astro';
+import { anchorFor, toLocale } from '../lib/i18n';
 interface Props {
   data: any;
 }
 const { data } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
 const skillIcons: Record<string, string> = {
   TypeScript: 'tabler:brand-typescript',
   JavaScript: 'tabler:brand-javascript',
@@ -51,7 +53,7 @@ const folderSlug = (name: string) =>
     .replace(/^-|-$/g, '');
 ---
 
-<section id="tech-stack" class="page-section">
+<section id={anchorFor(locale, 'stack')} class="page-section">
   <SectionHeading number={data.number} title={data.sectionTitle} heading={data.heading} />
   <WindowFrame
     filename={data.windowFilename}
@@ -61,10 +63,7 @@ const folderSlug = (name: string) =>
   >
     <div class="skill-grid">
       {data.groups.map((group: any, index: number) => (
-        <article
-          class="skill-folder"
-          style={`--reveal-delay: ${index * 120}ms`}
-        >
+        <article class="skill-folder" style={`--reveal-delay: ${index * 120}ms`}>
           <header class="skill-folder-header">
             <Icon name="tabler:folder-open" size={19} />
             <div>
@@ -91,17 +90,20 @@ const folderSlug = (name: string) =>
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
 
-        const folder = entry.target as HTMLElement;
-        folder.classList.remove('is-pending');
-        folder.classList.add('animate-fade-in-up', 'animate-duration-500');
-        folder.style.animationDelay = 'var(--reveal-delay)';
-        observer.unobserve(folder);
-      }
-    }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+          const folder = entry.target as HTMLElement;
+          folder.classList.remove('is-pending');
+          folder.classList.add('animate-fade-in-up', 'animate-duration-500');
+          folder.style.animationDelay = 'var(--reveal-delay)';
+          observer.unobserve(folder);
+        }
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -5% 0px' },
+    );
 
     folders.forEach((folder) => {
       folder.classList.add('is-pending');

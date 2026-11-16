@@ -1,14 +1,18 @@
 ---
 import DevFoto from './DevFoto.astro';
 import { Icon } from 'astro-icon/components';
+import { anchorFor, toLocale } from '../lib/i18n';
 interface Props {
   data: any;
   socials: { label: string; href: string }[];
 }
 const { data, socials } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
+const projectsAnchor = anchorFor(locale, 'projects');
+const contactAnchor = anchorFor(locale, 'contact');
 ---
 
-<section id="inicio" class="page-section hero-section">
+<section id={anchorFor(locale, 'hero')} class="page-section hero-section">
   <div class="hero-copy">
     <p class="availability">
       <i></i>
@@ -19,10 +23,10 @@ const { data, socials } = Astro.props;
     </h1>
     <p class="hero-lead" set:html={data.pitch} />
     <div class="hero-actions">
-      <a class="button button-primary" href="#proyectos">
+      <a class="button button-primary" href={`#${projectsAnchor}`}>
         {data.primaryCta} <Icon name="tabler:arrow-down" size={18} />
       </a>
-      <a class="button button-secondary" href="#contacto">
+      <a class="button button-secondary" href={`#${contactAnchor}`}>
         {data.secondaryCta} <Icon name="tabler:arrow-up-right" size={18} />
       </a>
     </div>
